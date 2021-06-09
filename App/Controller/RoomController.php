@@ -14,7 +14,7 @@ class RoomController
     }
 
     function index(){
-        $rooms=$this->roomDB->getAll();
+        $rooms = $this->roomDB->getAll();
         include '../../View/room/list.php';
     }
     public function getImage()
@@ -66,10 +66,10 @@ class RoomController
         $name = $_POST["name"];
         $description = $_POST["description"];
         $unit_price = $_POST["unit_price"];
-        $status = $_POST["status"];
+//        $status = $_POST["status"];
         $category = $_POST["category"];
-        $check_in = $_POST["check_in"];
-        $check_out = $_POST["check_out"];
+//        $check_in = $_POST["check_in"];
+//        $check_out = $_POST["check_out"];
         $image = $this->getImage();
 
         $data = [
@@ -77,10 +77,10 @@ class RoomController
             "name" => $name,
             "description" => $description,
             "unit_price" => $unit_price,
-            "status" => $status,
+//            "status" => $status,
             "category" => $category,
-            "check_in" => $check_in,
-            "check_out" => $check_out,
+//            "check_in" => $check_in,
+//            "check_out" => $check_out,
             "image" => $image
         ];
 
@@ -90,14 +90,15 @@ class RoomController
     public function add()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            include "../../View/room/add.php";
+            include "./View/room/add.php";
         }else{
             if (empty($this->error())){
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-                header("Location:");
+                header("Location: View/room/list.php");
+            }else{
+                include "./View/room/add.php";
             }
-
         }
     }
 
