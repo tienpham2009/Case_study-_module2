@@ -4,13 +4,23 @@
 namespace App\Model;
 
 
+use App\Room;
+
 class RoomModel extends Models implements Model_Interface
 {
     public function getAll()
     {
-        $sql = 'select *from room';
+        $sql = 'select * from room';
         $stmt = $this->connect->query($sql);
-        $stmt->fetchAll();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $key => $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $rooms[] = $room;
+        }
+        return $rooms;
     }
 
     public function getById($id)
@@ -23,8 +33,8 @@ class RoomModel extends Models implements Model_Interface
 
     public function add($object)
     {
-        $sql = "INSERT INTO room( name,description,image,unit_price,status,category,check_in,check_out) 
-                VALUES ( :name , :description ,:image ,:unit_price ,:status,:category,:check_in,:check_out ) ";
+        $sql = "INSERT INTO room( name,description,image,unit_price,category ) 
+                VALUES ( :name , :description ,:image ,:unit_price ,:category ) ";
 
         $stmt = $this->connect->prepare($sql);
 
@@ -32,18 +42,18 @@ class RoomModel extends Models implements Model_Interface
         $stmt->bindParam(":description", $object->name);
         $stmt->bindParam(":image", $object->name);
         $stmt->bindParam(":unit_price", $object->name);
-        $stmt->bindParam(":status", $object->name);
         $stmt->bindParam(":category", $object->name);
-        $stmt->bindParam(":check_in", $object->name);
-        $stmt->bindParam(":check_out", $object->name);
+//        $stmt->bindParam(":check_in", $object->name);
+//        $stmt->bindParam(":check_out", $object->name);
 
         return $stmt->execute();
     }
 
-    function delete($id){
-        $sql ='delete from room where Id=?';
-        $stmt=$this->connect->prepare($sql);
-        $stmt->bindParam(1,$id);
+    function delete($id)
+    {
+        $sql = 'delete from room where Id=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $id);
         $stmt->execute();
     }
 }

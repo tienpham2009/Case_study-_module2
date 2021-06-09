@@ -44,7 +44,7 @@
                         Quản lí phòng
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="">Thêm Mới</a>
+                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
                         <a class="dropdown-item" href="#">Danh Sách</a>
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
