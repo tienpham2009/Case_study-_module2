@@ -2,15 +2,16 @@
 
 use App\Controller\RoomController;
 
-$roomController=new RoomController();
+require __DIR__ . "/vendor/autoload.php";
 
-$page=$_REQUEST['page']??'';
-$action=$_REQUEST['action']??'';
+$page = $_REQUEST["page"] ?? null;
+$action = $_REQUEST["action"] ?? null;
 
-switch ($page){
+$roomController = new RoomController();
+
+switch ($page) {
     case 'room':
-        $roomController->index();
-        switch ($action){
+        switch ($action) {
             case 'update':
                 $roomController->update();
                 break;
@@ -22,6 +23,6 @@ switch ($page){
                 break;
         }
         break;
-//    default:
-//        $roomController->index();
+    default:
+        $roomController->index();
 }
