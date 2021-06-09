@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\RoomModel;
+use App\Room;
 
 class RoomController
 {
@@ -42,6 +43,20 @@ class RoomController
         return $target_name;
     }
 
+    public function error()
+    {
+        $error = [];
+        $fields = ["name","description","unit_price","status","category","image"];
+
+        foreach ($fields as $field){
+            if (empty($_POST[$field])){
+                $error[$field] = "Không được để trống";
+            }
+        }
+
+        return $error;
+    }
+
     public function getDataRoom()
     {
         $name = $_POST["name"];
@@ -63,6 +78,8 @@ class RoomController
             "check_out" => $check_out,
             "image" => $image
         ];
+
+         return new Room($data);
     }
 
     public function add()
@@ -70,6 +87,11 @@ class RoomController
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
             include "View/room/add.php";
         }else{
+            if (empty($this->error())){
+                $room = $this->getDataRoom();
+                $this->roomDB->add($room);
+                header("Location:");
+            }
 
         }
     }
