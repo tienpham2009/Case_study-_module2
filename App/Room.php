@@ -8,10 +8,10 @@ class Room
     public string $description;
     public string $image;
     public string $unit_price;
-    public string $status;
+    public mixed $status;
     public string $category;
-    public string $check_in;
-    public string $check_out;
+    public mixed $check_in;
+    public mixed $check_out;
 
     public function __construct($data)
     {
@@ -49,7 +49,7 @@ class Room
     /**
      * @param string $status
      */
-    public function setStatus(string $status): void
+    public function setStatus(mixed $status): void
     {
         $this->status = $status;
     }
@@ -65,7 +65,7 @@ class Room
     /**
      * @param string $check_in
      */
-    public function setCheckIn(string $check_in): void
+    public function setCheckIn(mixed $check_in): void
     {
         $this->check_in = $check_in;
     }
@@ -81,7 +81,7 @@ class Room
     /**
      * @param string $check_out
      */
-    public function setCheckOut(string $check_out): void
+    public function setCheckOut(mixed $check_out): void
     {
         $this->check_out = $check_out;
     }

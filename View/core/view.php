@@ -60,21 +60,20 @@
 
         <article class="col-12 col-sm-9 mt-2">
             <div class="col-12 col-sm-12 row mb-2">
-                <div class="col-sm-4">
-                    <?php include "router.php" ?>
-                    <div class="card text-center">
-
+                <?php include "router.php"?>
+<!--                <div class="col-sm-4">-->
+<!--                    <div class="card text-center">-->
 <!--                        <div class="card-header">-->
 <!--                            ROOM 1-->
 <!--                        </div>-->
 <!--                        <div class="card-body">-->
 <!--                            <img src="images/computer.jpg" style="width: 100%"/>-->
-<!--                        </div>-->
-<!--                        <div class="card-header">-->
+<!--                      </div>-->
+<!--                       <div class="card-header">-->
 <!--                            $ 100.25-->
-<!--                        </div>-->
-                    </div>
-                </div>
+<!--                       </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </article>
         <aside class="col-12 col-sm-3">
