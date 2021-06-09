@@ -54,13 +54,13 @@ class RoomController
         $image = $this->getImage();
 
         $data = [
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
+            "name" => $name,
+            "description" => $description,
+            "unit_price" => $unit_price,
+            "status" =>
+            "category"
+            "check_in"
+            "check_out"
         ]
     }
 
