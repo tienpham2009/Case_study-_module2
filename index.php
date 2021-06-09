@@ -1,11 +1,11 @@
 <?php
-include "vendor/autoload.php";
-use App\MiddleWare\Auth;
-$auth = new Auth();
-$auth->isLogin();
-
-
-?>
+//include "vendor/autoload.php";
+//use App\MiddleWare\Auth;
+//$auth = new Auth();
+//$auth->isLogin();
+//
+//
+//?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@ $auth->isLogin();
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
-<?php include "View/core/view.php" ?>
+<?php //include "View/core/view.php" ?>
 <?php include "router.php"?>
 
 

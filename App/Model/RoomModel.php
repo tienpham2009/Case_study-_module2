@@ -40,11 +40,10 @@ class RoomModel extends Models implements Model_Interface
         return $stmt->execute();
     }
 
-    function delete($id)
-    {
-        $sql = 'delete from room where Id=?';
-        $stmt = $this->connect->prepare($sql);
-        $stmt->bindParam(1, $id);
+    function delete($id){
+        $sql ='delete from room where Id=?';
+        $stmt=$this->connect->prepare($sql);
+        $stmt->bindParam(1,$id);
         $stmt->execute();
     }
 }
