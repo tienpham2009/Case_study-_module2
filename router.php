@@ -2,10 +2,12 @@
 
 use App\Controller\RoomController;
 
-$roomController=new RoomController();
+include "vendor/autoload.php";
 
-$page=$_REQUEST['page']??'';
-$action=$_REQUEST['action']??'';
+$page = $_REQUEST["page"] ?? null;
+$action = $_REQUEST["action"] ?? null;
+
+$roomController = new RoomController();
 
 switch ($page){
     case 'room':
@@ -20,6 +22,7 @@ switch ($page){
                 $roomController->add();
                 break;
         }
+        break;
     default:
         $roomController->index();
 }
