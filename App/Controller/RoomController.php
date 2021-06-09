@@ -57,11 +57,12 @@ class RoomController
             "name" => $name,
             "description" => $description,
             "unit_price" => $unit_price,
-            "status" =>
-            "category"
-            "check_in"
-            "check_out"
-        ]
+            "status" => $status,
+            "category" => $category,
+            "check_in" => $check_in,
+            "check_out" => $check_out,
+            "image" => $image
+        ];
     }
 
     public function add()
