@@ -20,7 +20,7 @@ $auth->isLogin();
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
-<?php include "View/core/view.php" ?>
+<?php //include "View/core/view.php" ?>
 <?php include "router.php"?>
 
 
