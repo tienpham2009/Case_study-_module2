@@ -1,6 +1,9 @@
 <?php
 namespace App\Model;
 
+use PDO;
+use PDOException;
+
 class Databases
 {
     protected $dsn;
