@@ -76,4 +76,10 @@ class RoomController
 
         }
     }
+
+    function delete(){
+        $id=$_GET['id'];
+        $room = $this->roomDB->delete();
+        header();
+    }
 }

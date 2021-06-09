@@ -39,4 +39,8 @@ class RoomModel extends Models implements Model_Interface
 
         return $stmt->execute();
     }
+
+    function delete(){
+        $sql ='delete from room where Id=?';
+    }
 }
