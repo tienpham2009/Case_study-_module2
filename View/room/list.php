@@ -26,10 +26,10 @@
                     <?php echo $room->category?>
                 </div>
                 <div class="card-body">
-                    <input type="date" value="<?php echo $room->check_in?>">
+                    <?php echo $room->check_in?>
                 </div>
                 <div class="card-body">
-                    <input type="date" value="<?php echo $room->check_out?>">
+                    <?php echo $room->check_out?>
                 </div>
             </div>
             <button href="index.php?page=room&action=update&id=<?php echo $room->id?>"
