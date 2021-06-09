@@ -8,9 +8,11 @@ class RoomModel extends Models implements Model_Interface
 {
     public function getAll()
     {
-        $sql = 'select *from room';
+        $sql = 'select * from room';
         $stmt = $this->connect->query($sql);
         $stmt->fetchAll();
+
+
     }
 
     public function getById($id)

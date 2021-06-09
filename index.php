@@ -4,6 +4,7 @@
 //$auth = new Auth();
 //$auth->isLogin();
 //
+
 //?>
 <!doctype html>
 <html lang="en">
@@ -23,6 +24,7 @@
 <body>
 <?php include "View/core/view.php" ?>
 <?php include "router.php" ?>
+
 
 
 <!-- Optional JavaScript -->
