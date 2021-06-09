@@ -54,14 +54,7 @@ class RoomController
         $image = $this->getImage();
 
         $data = [
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-        ]
+        ];
     }
 
     public function add()
