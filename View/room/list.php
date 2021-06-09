@@ -1,3 +1,4 @@
+<a href="index.php?page=room&action=add">Add room</a>
 <?php foreach ($rooms as $room):?>
 <article class="col-12 col-sm-9 mt-2">
     <div class="col-12 col-sm-12 row mb-2">
@@ -25,14 +26,16 @@
                     <?php echo $room->category?>
                 </div>
                 <div class="card-body">
-                    <input type="date" value="<?php echo $room->check_in?>">
+                    <?php echo $room->check_in?>
                 </div>
                 <div class="card-body">
-                    <input type="date" value="<?php echo $room->check_out?>">
+                    <?php echo $room->check_out?>
                 </div>
             </div>
-
-            <button type="button" class="btn btn-danger" >Delete</button>
+            <button href="index.php?page=room&action=update&id=<?php echo $room->id?>"
+                    type="button" class="btn btn-primary">Update</button>
+            <button href="index.php?page=room&action=delete&id=<?php echo $room->id?>"
+                    type="button" class="btn btn-danger" >Delete</button>
         </div>
     </div>
 </article>
