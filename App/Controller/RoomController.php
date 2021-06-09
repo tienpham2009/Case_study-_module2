@@ -58,14 +58,16 @@ class RoomController
         $image = $this->getImage();
 
         $data = [
-            "name"
-            "description"
-            "unit_price"
-            "status"
-            "category"
-            "check_in"
-            "check_out"
-        ]
+
+            "name" => $name,
+            "description" => $description,
+            "unit_price" => $unit_price,
+            "status" => $status,
+            "category" => $category,
+            "check_in" => $check_in,
+            "check_out" => $check_out,
+            "image" => $image
+        ];
     }
 
     public function add()
@@ -79,7 +81,7 @@ class RoomController
 
     function delete(){
         $id=$_GET['id'];
-        $room = $this->roomDB->delete();
-        header();
+        $room = $this->roomDB->delete($id);
+        header('Location:index.php');
     }
 }
