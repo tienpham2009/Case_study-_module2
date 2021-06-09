@@ -1,0 +1,15 @@
+{
+  "name": "vendor_name/caseStudy",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "tienpham2009",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  }
+}
