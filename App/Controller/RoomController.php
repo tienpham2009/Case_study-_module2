@@ -12,6 +12,10 @@ class RoomController
         $this->roomDB = new RoomModel();
     }
 
+    function index(){
+        $rooms=$this->roomDB->getAll();
+        include '../../View/room/list.php';
+    }
     public function getImage()
     {
         $fileError = [];
@@ -55,19 +59,19 @@ class RoomController
 
         $data = [
             "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
-            "name"
+            "description"
+            "unit_price"
+            "status"
+            "category"
+            "check_in"
+            "check_out"
         ]
     }
 
     public function add()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            include "View/room/add.php";
+            include "../../View/room/add.php";
         }else{
 
         }
