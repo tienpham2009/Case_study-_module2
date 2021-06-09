@@ -31,10 +31,10 @@ class RoomModel extends Models implements Model_Interface
         $stmt = $this->connect->prepare($sql);
 
         $stmt->bindParam(":name", $object->name);
-        $stmt->bindParam(":description", $object->name);
-        $stmt->bindParam(":image", $object->name);
-        $stmt->bindParam(":unit_price", $object->name);
-        $stmt->bindParam(":category", $object->name);
+        $stmt->bindParam(":description", $object->description);
+        $stmt->bindParam(":image", $object->image);
+        $stmt->bindParam(":unit_price", $object->unit_price);
+        $stmt->bindParam(":category", $object->category);
 //        $stmt->bindParam(":check_in", $object->name);
 //        $stmt->bindParam(":check_out", $object->name);
 

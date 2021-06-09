@@ -17,9 +17,9 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Hình ảnh</label>
-        <input type="file" class="form-control" id="exampleFormControlInput1" name="fileToUpload" >
+        <input type="file" class="form-control" id="image" name="image">
     </div>
     <div class="form-group">
-        <button type="button">Thêm mới</button>
+        <button type="submit">Thêm mới</button>
     </div>
 </form>
