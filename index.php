@@ -112,6 +112,10 @@
                 </a>
                 <a href="" type="button" class="list-group-item list-group-item-action">Phòng đang cho thuê</a>
                 <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
+                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
+                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
+                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
+                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
             </div>
         </aside>
     </div>
