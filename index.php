@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
+<a href="index.php?page=room">Room</a>
 <?php //include "View/core/view.php" ?>
 <?php include "router.php"?>
 

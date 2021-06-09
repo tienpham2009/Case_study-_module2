@@ -13,10 +13,12 @@ class RoomController
         $this->roomDB = new RoomModel();
     }
 
-    function index(){
-        $rooms=$this->roomDB->getAll();
+    function index()
+    {
+        $rooms = $this->roomDB->getAll();
         include '../../View/room/list.php';
     }
+
     public function getImage()
     {
         $fileError = [];
@@ -73,13 +75,16 @@ class RoomController
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
             include "../../View/room/add.php";
-        }else{}
+        } else {
+
+        }
     }
 
-    function delete(){
-        $id=$_GET['id'];
+    function delete()
+    {
+        $id = $_GET['id'];
         $room = $this->roomDB->delete($id);
         header('Location:index.php');
     }
