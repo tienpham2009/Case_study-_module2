@@ -3,7 +3,7 @@ namespace App\Model;
 
 class Models
 {
-    protected $connect;
+    protected \PDO $connect;
 
     public function __construct()
     {
