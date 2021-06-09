@@ -5,10 +5,10 @@ use PDO;
 
 class UserModel extends Models
 {
-    public string $user_name;
-    public string $password;
-    public string $email;
-    public string $image;
+    public mixed $user_name;
+    public mixed $password;
+    public mixed $email;
+    public mixed $image;
     public mixed $date_of_birth;
     public mixed $phone_number;
 
@@ -21,10 +21,11 @@ public function getAll()
 }
 public function getById($request)
 {
-    $sql = "SELECT * FROM `user` WHERE `email` = ?;";
+    $sql = "SELECT * FROM `user` WHERE `email` = ? AND `password` = ?;";
     $stmt =  $this->connect->prepare($sql);
     $stmt->bindParam(1,$request['email']);
+    $stmt->bindParam(2,$request['password']);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 }

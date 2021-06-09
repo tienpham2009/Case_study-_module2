@@ -7,7 +7,7 @@ use App\Model\UserModel;
 
 class AuthController
 {
-    public string $userModel;
+    public mixed $userModel;
 
     public function __construct()
     {
@@ -16,14 +16,14 @@ class AuthController
 
     public function checkEmailPassword()
     {
-        if (isset($_POST['email'])) {
-            $email = $_REQUEST['email'];
-            $result = $this->userModel->getById($email);
-            if (!$result) {
-                header("Location: ../../index.php");
-            }else{
-                header("Location: View/login/login.php");
-            }
+//        if (isset($_POST['email'])) {
+        $result = $this->userModel->getById($_REQUEST);
+
+        if ($result !== false) {
+            $_SESSION['userLogin'] = $result['email'];
+            header("Location: ../../index.php");
         }
+        return false;
+//        }
     }
 }

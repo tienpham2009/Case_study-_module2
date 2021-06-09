@@ -15,7 +15,7 @@ class RoomModel extends Models implements Model_Interface
 
     public function getById($id)
     {
-        $sql = 'select *from room where Id=?';
+        $sql = 'select * from room where Id = ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
