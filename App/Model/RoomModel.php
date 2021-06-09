@@ -4,15 +4,23 @@
 namespace App\Model;
 
 
+use App\Room;
+
 class RoomModel extends Models implements Model_Interface
 {
     public function getAll()
     {
         $sql = 'select * from room';
         $stmt = $this->connect->query($sql);
-        $stmt->fetchAll();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $rooms = [];
 
-
+        foreach ($result as $key => $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $rooms[] = $room;
+        }
+        return $rooms;
     }
 
     public function getById($id)
@@ -41,10 +49,11 @@ class RoomModel extends Models implements Model_Interface
         return $stmt->execute();
     }
 
-    function delete($id){
-        $sql ='delete from room where Id=?';
-        $stmt=$this->connect->prepare($sql);
-        $stmt->bindParam(1,$id);
+    function delete($id)
+    {
+        $sql = 'delete from room where Id=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $id);
         $stmt->execute();
     }
 }

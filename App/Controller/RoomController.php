@@ -18,7 +18,7 @@ class RoomController
     function index()
     {
         $rooms = $this->roomDB->getAll();
-        include './View/room/list.php';
+        include 'View/room/list.php';
     }
 
     public function getImage()
@@ -93,13 +93,12 @@ class RoomController
     public function add()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            echo "123";
              include "View/room/add.php";
         }else{
             $room = $this->getDataRoom();
             if (empty($this->error())){
                 $this->roomDB->add($room);
-                header('Location: index.php');
+                header('Location: View/room/list.php');
             }else{
                 include "View/room/add.php";
             }

@@ -23,7 +23,6 @@
 </head>
 <body>
 <?php include "View/core/view.php" ?>
-<?php include "router.php" ?>
 
 
 
