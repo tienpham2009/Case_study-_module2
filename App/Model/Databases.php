@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use PDO;
+
 class Databases
 {
     protected $dsn;
@@ -11,7 +13,7 @@ class Databases
     {
         $this->dsn = "mysql:host=localhost;dbname=mange_motel";
         $this->user = "root";
-        $this->password = "200997";
+        $this->password = "12345678";
     }
 
     public function connect()
