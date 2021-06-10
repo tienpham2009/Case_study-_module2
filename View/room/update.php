@@ -1,15 +1,16 @@
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" action="index.php?page=room&">
     <div class="form-group">
+        <input type="hidden" value="<?php echo $room->id?>">
         <label class="form-label" for="exampleFormControlInput1">Tên phòng</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="name">
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="<?php echo $room->name?>">
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Mô tả</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"><?php echo $room->description?></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">Đơn giá</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="unit_price" >
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="unit_price" value="<?php echo $room->unit_price?>">
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">Loại phòng</label>
@@ -28,3 +29,4 @@
         <a class="btn btn-secondary" href="index.php?page=room&action=show-list">Back</a>
     </div>
 </form>
+<?php

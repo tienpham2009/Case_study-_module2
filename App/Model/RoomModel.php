@@ -52,6 +52,19 @@ class RoomModel extends Models implements Model_Interface
         return $stmt->execute();
     }
 
+    function update($object){
+        $sql='update room set name=:name,description=:description,image=:image,unit_price=:unit_price,category=:category where Id=:id';
+        $stmt = $this->connect->prepare($sql);
+
+        $stmt->bindParam(":name", $object->name);
+        $stmt->bindParam(":description", $object->description);
+        $stmt->bindParam(":image", $object->image);
+        $stmt->bindParam(":unit_price", $object->unit_price);
+        $stmt->bindParam(":category", $object->category);
+
+        return $stmt->execute();
+    }
+
     function delete($id)
     {
         $sql = 'delete from room where Id= ?';
