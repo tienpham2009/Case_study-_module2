@@ -1,3 +1,11 @@
+<?php
+include "vendor/autoload.php";
+use App\MiddleWare\Auth;
+session_start();
+$auth = new Auth();
+$auth->isLogin();
+?>
+
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
@@ -13,6 +21,7 @@
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
+<?php include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
@@ -47,10 +56,10 @@
                         <a class="dropdown-item" href="#">Quên mật khẩu</a>
                         <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng ký thành viên</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>
                         <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -114,8 +123,6 @@
 <!--        </div>-->
 <!--    </footer>-->
 </div>
-
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

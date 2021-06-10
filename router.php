@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\RoomController;
+use App\Controller\AuthController;
 
 require __DIR__ . "/vendor/autoload.php";
 
@@ -8,6 +9,7 @@ $page = $_REQUEST["page"] ?? null;
 $action = $_REQUEST["action"] ?? null;
 
 $roomController = new RoomController();
+$authController = new AuthController();
 
 switch ($page) {
     case 'room':
@@ -32,4 +34,19 @@ switch ($page) {
                 break;
 
         }
+        break;
+    case 'user':
+        switch ($action){
+            case 'logout':
+                $authController->logout();
+                break;
+            case 'register':
+                $authController->register();
+                break;
+            case 'register-view':
+                header("location: View/user/register");
+        }
+        break;
+
 }
+?>

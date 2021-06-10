@@ -99,6 +99,7 @@ class RoomController
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
                 header("location:index.php?page=room&action=show-list");
+
             } else {
                 include "View/room/add.php";
             }
