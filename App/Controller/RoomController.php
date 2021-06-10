@@ -2,16 +2,20 @@
 
 namespace App\Controller;
 
+use App\Model\CateModel;
+use App\Model\Models;
 use App\Model\RoomModel;
 use App\Room;
 
 class RoomController
 {
     public RoomModel $roomDB;
+    public CateModel $cateModel;
 
     public function __construct()
     {
         $this->roomDB = new RoomModel();
+        $this->cateModel = new CateModel();
     }
 
 
@@ -51,7 +55,7 @@ class RoomController
         return $target_name;
     }
 
-    public function error()
+    public function error(): array
     {
         $error = [];
         $fields = ["name", "description", "unit_price", "category"];
@@ -69,7 +73,7 @@ class RoomController
         $name = $_POST["name"];
         $description = $_POST["description"];
         $unit_price = $_POST["unit_price"];
-        $category = $_POST["category"];
+        $category = $_POST["cateName"];
         $image = $this->getImage();
 
         $data = [
@@ -77,7 +81,7 @@ class RoomController
             "name" => $name,
             "description" => $description,
             "unit_price" => $unit_price,
-            "category" => $category,
+            "cateName" => $category,
             "image" => $image
         ];
 
@@ -86,18 +90,29 @@ class RoomController
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+            $cates = $this->cateModel->getAll();
             include "View/room/add.php";
-        } else {
-            if (empty($this->error())) {
+        }else{
+            $error = $this->error();
+            if (empty($error)){
                 $room = $this->getDataRoom();
+                //$cates = $this->cateModel->getAll();
                 $this->roomDB->add($room);
                 header("location:index.php?page=room&action=show-list");
-            } else {
-
-                header("location:index.php?page=room&action=show-list");
+            }else{
+                $cates = $this->cateModel->getAll();
+                include "View/room/add.php";
             }
         }
+    }
+
+    public function checkIn()
+    {
+        $id = $_GET["id"];
+        $rooms = $this->roomDB->getById($id);
+        $room = $rooms[0];
+        include "View/room/check_in.php";
     }
 
     function delete()
@@ -113,13 +128,14 @@ class RoomController
         //var_dump($id);die();
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $room = $this->roomDB->getById($id);
-
+            $cates = $this->cateModel->getAll();
             include "View/room/update.php";
         } else {
             if (empty($this->error())) {
-                $id = $_GET['id'];
+                $id = $_GET['id'];var_dump($id);die();
                 $room = $this->getDataRoom();
                 $room = $this->roomDB->update($id, $room);
+                var_dump($room);die();
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";
