@@ -169,4 +169,11 @@ class RoomController
 
         }
     }
+
+    public function checkOut()
+    {
+        $id = $_GET["id"];
+        $this->roomDB->checkOut($id);
+        header("location:index.php?page=room&action=show-list");
+    }
 }
