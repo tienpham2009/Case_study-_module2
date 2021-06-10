@@ -187,8 +187,6 @@ class RoomController
                 }else{
                     $this->roomDB->update($id, $rooms);
                 }
-
-
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";
@@ -202,5 +200,16 @@ class RoomController
         $id = $_GET["id"];
         $this->roomDB->checkOut($id);
         header("location:index.php?page=room&action=show-list");
+    }
+
+    public function search()
+    {
+        $search = $_POST["search"];
+        if (empty($search)){
+            $rooms = $this->roomDB->getAll();
+        }else{
+            $rooms = $this->roomDB->search($search);
+        }
+        include "View/room/list.php";
     }
 }

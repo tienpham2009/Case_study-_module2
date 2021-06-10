@@ -72,8 +72,8 @@
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" method="post" action="index.php?page=room&action=search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search" name="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
             </form>
         </div>
@@ -88,13 +88,6 @@
             <div class="card poly-cart">
                 <div class="card-body row">
                     <p class="col-sm-9"><?php include "View/core/count.php"?></p>
-<!--                    <img class="col-sm-5" src="images/shoppingcart.gif"/>-->
-<!--                    <ul class="col-sm-7">-->
-<!--                       <li>100 items</li>-->
-<!--                        <li>$56.8</li>-->
-<!--                       <li><a href="#">Xem giỏ hàng</a></li>-->
-<!--                   </ul>-->
-<!--                </div>-->
             </div>
             <div class="card mt-3 mb-3">
                 <div class="card-body">
