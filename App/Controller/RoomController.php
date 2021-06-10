@@ -25,15 +25,15 @@ class RoomController
     {
         $fileError = [];
         $target_dir = "Public/Image/";
-        $target_name = basename($_FILES["fileToUpload"]["name"]);
+        $target_name = basename($_FILES["image"]["name"]);
 
         $target_file = $target_dir . $target_name;
 
-        if ($_FILES["fileToUpload"]["size"] > 5000000) {
+        if ($_FILES["image"]["size"] > 5000000) {
             $fileError["fileUpload"] = "Chỉ được upload file dưới 5MB";
         }
 
-        $file_type = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+        $file_type = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
         $file_type_allow = ["jpg", "png", "jpeg", "gif"];
 
@@ -46,7 +46,7 @@ class RoomController
         }
 
         if (empty($fileError)) {
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
         }
         return $target_name;
     }
@@ -54,8 +54,7 @@ class RoomController
     public function error()
     {
         $error = [];
-        $fields = ["name","description","unit_price","status","category","image"];
-
+        $fields = ["name","description","unit_price","category"];
         foreach ($fields as $field){
             if (empty($_POST[$field])){
                 $error[$field] = "Không được để trống";
@@ -70,10 +69,7 @@ class RoomController
         $name = $_POST["name"];
         $description = $_POST["description"];
         $unit_price = $_POST["unit_price"];
-//        $status = $_POST["status"];
         $category = $_POST["category"];
-//        $check_in = $_POST["check_in"];
-//        $check_out = $_POST["check_out"];
         $image = $this->getImage();
 
         $data = [
@@ -81,10 +77,7 @@ class RoomController
             "name" => $name,
             "description" => $description,
             "unit_price" => $unit_price,
-//            "status" => $status,
             "category" => $category,
-//            "check_in" => $check_in,
-//            "check_out" => $check_out,
             "image" => $image
         ];
 
@@ -94,14 +87,15 @@ class RoomController
     public function add()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            include "./View/room/add.php";
+             include "View/room/add.php";
         }else{
+
             if (empty($this->error())){
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-                header("Location: View/room/list.php");
+                header("Location:../index.php");
             }else{
-                include "./View/room/add.php";
+                include "View/room/add.php";
             }
 
         }

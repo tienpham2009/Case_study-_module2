@@ -6,7 +6,7 @@
         </div>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
-        <a class="navbar-brand" href="#">Trang chủ</a>
+        <a class="navbar-brand" href="index.php">Trang chủ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
-                        <a class="dropdown-item" href="#">Danh Sách</a>
+                        <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
@@ -57,21 +57,23 @@
         </div>
     </nav>
     <div class="row">
+
         <article class="col-12 col-sm-9 mt-2">
             <div class="col-12 col-sm-12 row mb-2">
-                <div class="col-sm-4">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            ROOM 1
-                        </div>
-                        <div class="card-body">
-                            <img src="images/computer.jpg" style="width: 100%"/>
-                        </div>
-                        <div class="card-header">
-                            $ 100.25
-                        </div>
-                    </div>
-                </div>
+                <?php include "router.php"?>
+<!--                <div class="col-sm-4">-->
+<!--                    <div class="card text-center">-->
+<!--                        <div class="card-header">-->
+<!--                            ROOM 1-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <img src="images/computer.jpg" style="width: 100%"/>-->
+<!--                      </div>-->
+<!--                       <div class="card-header">-->
+<!--                            $ 100.25-->
+<!--                       </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </article>
         <aside class="col-12 col-sm-3">
