@@ -21,10 +21,10 @@ switch ($page) {
             case 'add':
                 $roomController->add();
                 break;
+            case "show-list":
+                $roomController->index();
+                break;
         }
-        break;
-    default:
-        $roomController->index();
         break;
 
 }
