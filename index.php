@@ -19,16 +19,14 @@ $auth->isLogin();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Public/Css/view.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <?php include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online shopping mall</h1>
-            <h5>The center point of the professional programming</h5>
+            <h1>Online H.T.T Motel Manager</h1>
+            <h5>The center point of the professional managing</h5>
         </div>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
@@ -70,8 +68,8 @@ $auth->isLogin();
                         Quản lí phòng
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
                         <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
+                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
@@ -119,11 +117,11 @@ $auth->isLogin();
             </div>
         </aside>
     </div>
-    <footer class="card mb-2" id="footer">
-        <div class="text-center">
-            <p class="mt-3">CodeGym &copy; 2021</p>
-        </div>
-    </footer>
+<!--    <footer class="card mb-2" id="footer">-->
+<!--        <div class="text-center">-->
+<!--            <p class="mt-3">CodeGym &copy; 2021</p>-->
+<!--        </div>-->
+<!--    </footer>-->
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -136,5 +134,7 @@ $auth->isLogin();
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="Public/Js/roomJs.js"></script>
+
 </body>
 </html>

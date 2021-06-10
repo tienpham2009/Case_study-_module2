@@ -26,6 +26,13 @@ switch ($page) {
             case "show-list":
                 $roomController->index();
                 break;
+            case "check_in":
+                $roomController->checkIn();
+                break;
+            case "check_out":
+                $roomController->checkOut();
+                break;
+
         }
         break;
     case 'user':
