@@ -19,17 +19,17 @@
                 <?php echo $room->status ?>
             </div>
             <div class="card-header">
-                <?php echo $room->category ?>
+                <?php echo $room->cateName ?>
             </div>
             <div class="card-header" >
                 <a href="index.php?page=room&action=update&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-primary">Update
+                        type="button" class="btn btn-primary">Update
                 </a>
                 <a href="index.php?page=room&action=delete&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-danger">Delete
+                        type="button" class="btn btn-danger">Delete
                 </a>
                 <a href="index.php?page=room&action=check_in&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-danger">Check in
+                        type="submit" class="btn btn-info">Check in
                 </a>
             </div>
         </div>

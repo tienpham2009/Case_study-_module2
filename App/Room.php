@@ -9,7 +9,7 @@ class Room
     public string $image;
     public string $unit_price;
     public mixed $status;
-    public string $category;
+    public string $cateName;
     public mixed $check_in;
     public mixed $check_out;
 
@@ -19,7 +19,7 @@ class Room
         $this->description = $data["description"];
         $this->image = $data["image"];
         $this->unit_price = (int)$data["unit_price"];
-        $this->category = $data["category"];
+        $this->cateName = $data["cateName"];
     }
 
     /**

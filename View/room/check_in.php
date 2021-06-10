@@ -7,7 +7,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Loại Phòng</label>
-            <p><?php  echo $room->category ?></p>
+            <p><?php  echo $room->cateName ?></p>
         </div>
         <div class="form-group col-md-6">
             <label for="inputZip">Giá phòng</label>
@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="inputAddress">Hình ảnh</label>
-        <img height="150" width="200" src="Public/Image/<?php echo $room->image ?>">
+        <img width="150px" height="200px" src="Public/Image/<?php echo $room->image ?>">
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
@@ -51,4 +51,5 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Cho thuê</button>
+    <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
 </form>
