@@ -13,8 +13,8 @@ class Databases
     public function __construct()
     {
         $this->dsn = "mysql:host=localhost;dbname=manage_motel";
-        $this->user = "admin";
-        $this->password = "123456";
+        $this->user = "root";
+        $this->password = "12345678";
     }
 
     public function connect()

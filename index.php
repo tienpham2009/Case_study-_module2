@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include "vendor/autoload.php";
 use App\MiddleWare\Auth;
 session_start();
@@ -8,15 +7,6 @@ $auth->isLogin();
 
 
 ?>
-=======
-//include "vendor/autoload.php";
-//use App\MiddleWare\Auth;
-//$auth = new Auth();
-//$auth->isLogin();
-//
-
-//?>
->>>>>>> df119a31530c3b63db7f9d6e4f463eaefa9ccc35
 <!doctype html>
 <html lang="en">
 <head>

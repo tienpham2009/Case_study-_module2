@@ -18,7 +18,7 @@ class RoomController
     function index()
     {
         $rooms = $this->roomDB->getAll();
-        include '../View/room/list.php';
+        include 'View/room/list.php';
     }
 
     public function getImage()
