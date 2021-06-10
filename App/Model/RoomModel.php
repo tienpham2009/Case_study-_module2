@@ -69,4 +69,25 @@ class RoomModel extends Models implements Model_Interface
         $stmt->bindParam(1, $id);
         $stmt->execute();
     }
+
+    public function checkIn($dataCheckIn)
+    {
+//        $sqlPay = "INSERT INTO payment (room_name,	price ) VALUES (:room_name , :price) WHERE room_id = :room_id";
+//
+//        $stmtPay = $this->connect->prepare($sqlPay);
+//        $stmtPay->bindParam(":room_name" , $dataCheckIn["roomName"]);
+//        $stmtPay->bindParam(":price" , $dataCheckIn["price"]);
+//        $stmtPay->bindParam(":room_id", $dataCheckIn["roomId"]);
+//        $stmtPay->execute();
+
+        $sqlRoom = "UPDATE room SET check_in = :check_in , check_out = :check_out , status = :status WHERE Id = :room_id";
+
+        $stmtRoom = $this->connect->prepare($sqlRoom);
+        $status = "Đang cho thuê";
+        $stmtRoom->bindParam("check_in" , $dataCheckIn["checkIn"]);
+        $stmtRoom->bindParam("check_out" , $dataCheckIn["checkOut"]);
+        $stmtRoom->bindParam("room_id", $dataCheckIn["roomId"]);
+        $stmtRoom->bindParam("status", $status);
+        $stmtRoom->execute();
+    }
 }

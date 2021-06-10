@@ -1,8 +1,9 @@
-<form>
+<form method="post">
     <div class="form-row">
+        <input type="hidden" name="id" value="<?php echo $room->id ?>">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Tên phòng</label>
-            <p><?php  echo $room->name ?></p>
+            <input class="form-control" value="<?php echo $room->name ?>" name="roomName" >
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Loại Phòng</label>
@@ -10,26 +11,35 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputZip">Giá phòng</label>
-            <p><?php echo $room->unit_price ?></p>
+            <input id="unitPrice" class="form-control" value=" <?php echo $room->unit_price ?>" >
         </div>
     </div>
 
     <div class="form-group">
         <label for="inputAddress">Hình ảnh</label>
-        <img src="Public/Image/<?php echo $room->image ?>">
+        <img height="150" width="200" src="Public/Image/<?php echo $room->image ?>">
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="inputCity">Time check in</label>
-            <input type="text" class="form-control" id="timeCheckIn" value="<?php echo date(" Y-m-d h:i:sa")?>">
+            <input type="text" class="form-control" id="timeCheckIn" value="<?php echo date(" Y-m-d G:i:s ")?>" name="timeCheckIn">
+            <?php if (isset($error)):?>
+                <p><?php echo $error["timeCheckIn"] ?></p>
+            <?php endif; ?>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">Thời gian check out</label>
-            <input type="datetime-local" class="form-control" id="timeCheckout"">
+            <input type="datetime-local" class="form-control" id="timeCheckOut" onchange="total()" name="timeCheckOut">
+            <?php if (isset($error)):?>
+                <p><?php echo $error["timeCheckOut"] ?></p>
+            <?php endif; ?>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-4">
             <label for="inputZip">Tổng tiền</label>
-            <input type="text" class="form-control" id="inputZip">
+            <input type="text" class="form-control" id="price" name="price">
+            <?php if (isset($error)):?>
+                <p><?php echo $error["price"] ?></p>
+            <?php endif; ?>
         </div>
     </div>
     <div class="form-group">
