@@ -15,7 +15,7 @@ class RoomModel extends Models implements Model_Interface
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $rooms = [];
 
-        foreach ($result as $key => $item) {
+        foreach ($result as $item) {
             $room = new Room($item);
             $room->setId($item['Id']);
             $room->setStatus($item["status"]);
@@ -30,10 +30,22 @@ class RoomModel extends Models implements Model_Interface
 
     public function getById($id)
     {
-        $sql = 'select *from room where Id=?';
+        $sql = 'select * from room where Id=?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
     }
 
     public function add($object)
