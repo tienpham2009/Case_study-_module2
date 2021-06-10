@@ -14,7 +14,7 @@ class Databases
     {
         $this->dsn = "mysql:host=localhost;dbname=manage_motel";
         $this->user = "admin";
-        $this->password = '123456';
+        $this->password = "123456";
 
     }
 

@@ -1,3 +1,11 @@
+<?php
+//include "vendor/autoload.php";
+//use App\MiddleWare\Auth;
+//session_start();
+//$auth = new Auth();
+//$auth->isLogin();
+//?>
+
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
@@ -13,11 +21,12 @@
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
+<?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online shopping mall</h1>
-            <h5>The center point of the professional programming</h5>
+            <h1>Online H.T.T Motel Manager</h1>
+            <h5>The center point of the professional managing</h5>
         </div>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
@@ -47,10 +56,10 @@
                         <a class="dropdown-item" href="#">Quên mật khẩu</a>
                         <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng ký thành viên</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>
                         <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -64,6 +73,17 @@
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
+            </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hiện phòng theo trạng thái
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Empty">Empty</a>
+                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Rented">Rented</a>
+                </div>
+            </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search">
@@ -108,14 +128,7 @@
             </div>
         </aside>
     </div>
-    <footer class="card mb-2" id="footer">
-        <div class="text-center">
-            <p class="mt-3">CodeGym &copy; 2021</p>
-        </div>
-    </footer>
 </div>
-
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

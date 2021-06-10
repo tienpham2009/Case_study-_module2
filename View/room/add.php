@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data" action="index.php?page=room&action=add">
+<form method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label class="form-label" for="exampleFormControlInput1">Tên phòng</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="name">

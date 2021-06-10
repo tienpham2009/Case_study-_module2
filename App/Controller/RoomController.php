@@ -25,6 +25,16 @@ class RoomController
         include 'View/room/list.php';
     }
 
+    function getStatus()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $status = $_GET['status'];
+            $rooms = $this->roomDB->getByStatus($status);
+            //var_dump($rooms);die();
+            include 'View/room/list.php';
+        }
+    }
+
     public function getImage()
     {
         $fileError = [];
@@ -90,16 +100,17 @@ class RoomController
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $cates = $this->cateModel->getAll();
             include "View/room/add.php";
-        }else{
+        } else {
             $error = $this->error();
-            if (empty($error)){
+            if (empty($error)) {
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
                 header("location:index.php?page=room&action=show-list");
-            }else{
+
+            } else {
                 include "View/room/add.php";
             }
         }
@@ -110,7 +121,37 @@ class RoomController
         $id = $_GET["id"];
         $rooms = $this->roomDB->getById($id);
         $room = $rooms[0];
-        include "View/room/check_in.php";
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            include "View/room/check_in.php";
+        } else {
+
+            $fields = ["timeCheckIn", "timeCheckOut", "price"];
+            foreach ($fields as $field) {
+                if (empty($_POST[$field])) {
+                    $error[$field] = "Không được để trống";
+                }
+            }
+            if (empty($error)) {
+                $checkIn = $_POST["timeCheckIn"];
+                $checkOut = $_POST["timeCheckOut"];
+                $price = $_POST["price"];
+                $roomName = $_POST["roomName"];
+                $roomId = $_POST['id'];
+
+                $dataCheckIn = [
+                    "roomName" => $roomName,
+                    "checkIn" => $checkIn,
+                    "checkOut" => $checkOut,
+                    "price" => $price,
+                    "roomId" => $roomId
+                ];
+                $this->roomDB->checkIn($dataCheckIn);
+                header("location:index.php?page=room&action=show-list");
+            } else {
+                include "View/room/check_in.php";
+            }
+        }
+
     }
 
     function delete()
@@ -123,7 +164,6 @@ class RoomController
     function update()
     {
         $id = $_GET['id'];
-        //var_dump($id);die();
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $room = $this->roomDB->getById($id);
             $cates = $this->cateModel->getAll();
@@ -139,5 +179,12 @@ class RoomController
             }
 
         }
+    }
+
+    public function checkOut()
+    {
+        $id = $_GET["id"];
+        $this->roomDB->checkOut($id);
+        header("location:index.php?page=room&action=show-list");
     }
 }

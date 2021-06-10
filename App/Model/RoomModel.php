@@ -29,9 +29,29 @@ class RoomModel extends Models implements Model_Interface
 
     public function getById($id)
     {
-        $sql = 'select * from v_room where Id=?';
+
+        $sql = 'select * from v_room where Id= ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
+    }
+
+    function getByStatus($status){
+        $sql = 'select * from v_room where status=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $status);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $rooms = [];
@@ -84,6 +104,38 @@ class RoomModel extends Models implements Model_Interface
         $sql = 'delete from room where Id= ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
+        $stmt->execute();
+    }
+
+    public function checkIn($dataCheckIn)
+    {
+//        $sqlPay = "INSERT INTO payment (room_name,	price ) VALUES (:room_name , :price) WHERE room_id = :room_id";
+//
+//        $stmtPay = $this->connect->prepare($sqlPay);
+//        $stmtPay->bindParam(":room_name" , $dataCheckIn["roomName"]);
+//        $stmtPay->bindParam(":price" , $dataCheckIn["price"]);
+//        $stmtPay->bindParam(":room_id", $dataCheckIn["roomId"]);
+//        $stmtPay->execute();
+
+        $sqlRoom = "UPDATE room SET check_in = :check_in , check_out = :check_out , status = :status WHERE Id = :room_id";
+
+        $stmtRoom = $this->connect->prepare($sqlRoom);
+        $status = "Rented";
+        $stmtRoom->bindParam("check_in" , $dataCheckIn["checkIn"]);
+        $stmtRoom->bindParam("check_out" , $dataCheckIn["checkOut"]);
+        $stmtRoom->bindParam("room_id", $dataCheckIn["roomId"]);
+        $stmtRoom->bindParam("status", $status);
+        $stmtRoom->execute();
+    }
+
+    public function checkOut($id)
+    {
+        $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
+
+        $stmt = $this->connect->prepare($sql);
+        $status = "Empty";
+        $stmt->bindParam(":status" , $status);
+        $stmt->bindParam("room_id" , $id);
         $stmt->execute();
     }
 }
