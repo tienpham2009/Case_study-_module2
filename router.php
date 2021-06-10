@@ -7,9 +7,12 @@ require __DIR__ . "/vendor/autoload.php";
 
 $page = $_REQUEST["page"] ?? null;
 $action = $_REQUEST["action"] ?? null;
+$status = $_REQUEST["status"] ?? null;
 
 $roomController = new RoomController();
 $authController = new AuthController();
+
+
 
 switch ($page) {
     case 'room':

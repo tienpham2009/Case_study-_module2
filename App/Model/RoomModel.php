@@ -5,6 +5,7 @@ namespace App\Model;
 
 
 use App\Room;
+use http\Exception\BadMethodCallException;
 use PDO;
 
 class RoomModel extends Models implements Model_Interface
@@ -81,20 +82,35 @@ class RoomModel extends Models implements Model_Interface
     }
 
     function update($id,$object){
-        $sql='update room 
+        if ($object->image != ""){
+            $sql='update room 
             set name=:name,
             description=:description,
             image=:image,
             unit_price=:unit_price,
             category_id=:category where Id=:id';
-        $stmt = $this->connect->prepare($sql);
+            $stmt = $this->connect->prepare($sql);
 
-        $stmt->bindParam(":name", $object->name);
-        $stmt->bindParam(":description", $object->description);
-        $stmt->bindParam(":image", $object->image);
-        $stmt->bindParam(":unit_price", $object->unit_price);
-        $stmt->bindParam(":category", $object->cateName);
-        $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":image", $object->image);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }else{
+            $sql='update room 
+            set name=:name,
+            description=:description,
+            unit_price=:unit_price,
+            category_id=:category where Id=:id';
+            $stmt = $this->connect->prepare($sql);
+
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }
 
         return $stmt->execute();
     }
@@ -137,5 +153,18 @@ class RoomModel extends Models implements Model_Interface
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
+    }
+
+    public function countByStatus($status)
+    {
+        $sql = "SELECT COUNT(Id) AS count, status FROM `room` WHERE status = :status ";
+
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":status", $status);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0];
+
     }
 }

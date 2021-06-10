@@ -17,14 +17,14 @@
 
     <div class="form-group">
         <label for="inputAddress">Hình ảnh</label>
-        <img width="150px" height="200px" src="Public/Image/<?php echo $room->image ?>">
+        <img width="200px" height="150px" src="Public/Image/<?php echo $room->image ?>">
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="inputCity">Time check in</label>
             <input type="text" class="form-control" id="timeCheckIn" value="<?php echo date(" Y-m-d G:i:s ")?>" name="timeCheckIn">
             <?php if (isset($error)):?>
-                <p class="error ><?php echo $error["timeCheckIn"] ?></p>
+                <p class="error"><?php echo $error["timeCheckIn"] ?></p>
             <?php endif; ?>
         </div>
         <div class="form-group col-md-4">
@@ -38,7 +38,7 @@
             <label for="inputZip">Tổng tiền</label>
             <input type="text" class="form-control" id="price" name="price">
             <?php if (isset($error)):?>
-                <p class="error><?php echo $error["price"] ?></p>
+                <p class="error"><?php echo $error["price"] ?></p>
             <?php endif; ?>
         </div>
     </div>

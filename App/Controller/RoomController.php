@@ -30,9 +30,14 @@ class RoomController
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $status = $_GET['status'];
             $rooms = $this->roomDB->getByStatus($status);
-            //var_dump($rooms);die();
             include 'View/room/list.php';
         }
+    }
+
+    function countByStatus()
+    {
+        $status = $_GET['status'];
+        return $this->roomDB->countByStatus($status);
     }
 
     public function getImage()
@@ -157,22 +162,33 @@ class RoomController
     function delete()
     {
         $id = $_GET['id'];
+        $room = $this->roomDB->getById($id);
+        unlink("Public/Image/". $room[0]->image);
         $this->roomDB->delete($id);
         header('Location:index.php?page=room&action=show-list');
     }
 
     function update()
     {
+
         $id = $_GET['id'];
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $room = $this->roomDB->getById($id);
             $cates = $this->cateModel->getAll();
             include "View/room/update.php";
         } else {
+            $error = $this->error();
             if (empty($this->error())) {
-                $id = $_GET['id'];
                 $rooms = $this->getDataRoom();
-                $this->roomDB->update($id, $rooms);
+                if ($rooms->image != ""){
+                    $room = $this->roomDB->getById($id);
+                    unlink("Public/Image/" . $room[0]->image);
+                    $this->roomDB->update($id, $rooms);
+                }else{
+                    $this->roomDB->update($id, $rooms);
+                }
+
+
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";

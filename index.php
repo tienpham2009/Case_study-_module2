@@ -5,7 +5,6 @@
 //$auth = new Auth();
 //$auth->isLogin();
 //?>
-
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
@@ -73,18 +72,6 @@
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
-            </ul>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hiện phòng theo trạng thái
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Empty">Empty</a>
-                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Rented">Rented</a>
-                </div>
-            </li>
-            </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
@@ -100,13 +87,14 @@
         <aside class="col-12 col-sm-3">
             <div class="card poly-cart">
                 <div class="card-body row">
-                    <img class="col-sm-5" src="images/shoppingcart.gif"/>
-                    <ul class="col-sm-7">
-                        <li>100 items</li>
-                        <li>$56.8</li>
-                        <li><a href="#">Xem giỏ hàng</a></li>
-                    </ul>
-                </div>
+                    <p class="col-sm-9"><?php include "View/core/count.php"?></p>
+<!--                    <img class="col-sm-5" src="images/shoppingcart.gif"/>-->
+<!--                    <ul class="col-sm-7">-->
+<!--                       <li>100 items</li>-->
+<!--                        <li>$56.8</li>-->
+<!--                       <li><a href="#">Xem giỏ hàng</a></li>-->
+<!--                   </ul>-->
+<!--                </div>-->
             </div>
             <div class="card mt-3 mb-3">
                 <div class="card-body">
@@ -117,14 +105,11 @@
             </div>
             <div class="list-group">
                 <a href="" type="button" class="list-group-item list-group-item-action active">
-                    Phòng trống
+                    Hiển thị phòng theo trạng thái
                 </a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Phòng đang cho thuê</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
+                <a href="index.php?page=room&action=status&status=Empty" type="button" class="list-group-item list-group-item-action">Phòng trống</a>
+                <a href="index.php?page=room&action=status&status=Rented" type="button" class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
+                <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
             </div>
         </aside>
     </div>
