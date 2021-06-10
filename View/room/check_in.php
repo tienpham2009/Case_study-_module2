@@ -24,21 +24,21 @@
             <label for="inputCity">Time check in</label>
             <input type="text" class="form-control" id="timeCheckIn" value="<?php echo date(" Y-m-d G:i:s ")?>" name="timeCheckIn">
             <?php if (isset($error)):?>
-                <p><?php echo $error["timeCheckIn"] ?></p>
+                <p class="error ><?php echo $error["timeCheckIn"] ?></p>
             <?php endif; ?>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">Thời gian check out</label>
             <input type="datetime-local" class="form-control" id="timeCheckOut" onchange="total()" name="timeCheckOut">
             <?php if (isset($error)):?>
-                <p><?php echo $error["timeCheckOut"] ?></p>
+                <p class="error"><?php echo $error["timeCheckOut"] ?></p>
             <?php endif; ?>
         </div>
         <div class="form-group col-md-4">
             <label for="inputZip">Tổng tiền</label>
             <input type="text" class="form-control" id="price" name="price">
             <?php if (isset($error)):?>
-                <p><?php echo $error["price"] ?></p>
+                <p class="error><?php echo $error["price"] ?></p>
             <?php endif; ?>
         </div>
     </div>
