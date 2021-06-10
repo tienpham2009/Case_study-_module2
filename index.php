@@ -16,8 +16,8 @@
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online shopping mall</h1>
-            <h5>The center point of the professional programming</h5>
+            <h1>Online H.T.T Motel Manager</h1>
+            <h5>The center point of the professional managing</h5>
         </div>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
