@@ -22,14 +22,13 @@
                 <?php echo $room->category ?>
             </div>
             <div class="card-header" >
-                <button href="index.php?page=room&action=update&id=<?php echo $room->id ?>"
-                        type="button" class="btn btn-primary">Update
-                </button>
-                <button href="index.php?page=room&action=delete&id=<?php echo $room->id ?>"
-                        type="button" class="btn btn-danger">Delete
-                </button>
+                <a href="index.php?page=room&action=update&id=<?php echo $room->id ?>"
+                        type="submit" class="btn btn-primary">Update
+                </a>
+                <a href="index.php?page=room&action=delete&id=<?php echo $room->id ?>"
+                        type="submit" class="btn btn-danger">Delete
+                </a>
             </div>
-
         </div>
     </div>
 <?php endforeach; ?>

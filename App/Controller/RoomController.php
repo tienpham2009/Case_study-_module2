@@ -105,7 +105,7 @@ class RoomController
     function delete()
     {
         $id = $_GET['id'];
-        $room = $this->roomDB->delete($id);
-        header('Location:index.php');
+        $this->roomDB->delete($id);
+        header('Location:index.php?page=room&action=show-list');
     }
 }
