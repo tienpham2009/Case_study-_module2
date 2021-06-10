@@ -3,7 +3,10 @@
 <!--</div>-->
 <?php
     //var_dump($room[0]);die();
+
 ?>
+<?php if (isset($room)):?>
+
 <form method="post" enctype="multipart/form-data"
       action="./index.php?page=room&action=update&id=<?php echo $room[0]->id ?>">
     <div class="form-group">
@@ -22,6 +25,8 @@
         <input type="text" class="form-control" id="exampleFormControlInput1"
                name="unit_price" value="<?php echo $room[0]->unit_price ?>">
     </div>
+    <?php endif;?>
+
     <div class="form-group">
         <label for="exampleFormControlInput1">Loại phòng</label>
         <select class="form-control" name="cateName" id="exampleFormControlInput1">

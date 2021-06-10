@@ -58,7 +58,7 @@ class RoomController
     public function error(): array
     {
         $error = [];
-        $fields = ["name", "description", "unit_price", "category"];
+        $fields = ["name", "description", "unit_price", "cateName"];
         foreach ($fields as $field) {
             if (empty($_POST[$field])) {
                 $error[$field] = "Không được để trống";
@@ -97,11 +97,9 @@ class RoomController
             $error = $this->error();
             if (empty($error)){
                 $room = $this->getDataRoom();
-                //$cates = $this->cateModel->getAll();
                 $this->roomDB->add($room);
                 header("location:index.php?page=room&action=show-list");
             }else{
-                $cates = $this->cateModel->getAll();
                 include "View/room/add.php";
             }
         }
@@ -132,10 +130,9 @@ class RoomController
             include "View/room/update.php";
         } else {
             if (empty($this->error())) {
-                $id = $_GET['id'];var_dump($id);die();
-                $room = $this->getDataRoom();
-                $room = $this->roomDB->update($id, $room);
-                var_dump($room);die();
+                $id = $_GET['id'];
+                $rooms = $this->getDataRoom();
+                $this->roomDB->update($id, $rooms);
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";
