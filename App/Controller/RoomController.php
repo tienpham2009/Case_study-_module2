@@ -92,11 +92,9 @@ class RoomController
             if (empty($this->error())){
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-<<<<<<< HEAD
+
                 header("location:index.php?page=room&action=show-list");
-=======
-                header("Location:index.php");
->>>>>>> 0a663d8ffeb2975de77fc16fe78ecaf7c9395d78
+
             }else{
                 include "View/room/add.php";
             }
