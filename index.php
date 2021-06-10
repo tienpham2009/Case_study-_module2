@@ -77,11 +77,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hiên phòng theo trạng thái
+                    Hiện phòng theo trạng thái
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.php?page=room&action=status=empty" >Empty</a>
-                    <a class="dropdown-item" href="index.php?page=room&action=status=Rented">Rented</a>
+                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Empty">Empty</a>
+                    <a class="dropdown-item" href="index.php?page=room&action=status&status=Rented">Rented</a>
                 </div>
             </li>
             </ul>

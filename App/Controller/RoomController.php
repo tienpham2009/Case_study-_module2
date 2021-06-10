@@ -27,9 +27,12 @@ class RoomController
 
     function getStatus()
     {
-        $status = $_GET['status'];
-        $rooms = $this->roomDB->getByStatus($status);
-        include 'View/room/list.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $status = $_GET['status'];
+            $rooms = $this->roomDB->getByStatus($status);
+            //var_dump($rooms);die();
+            include 'View/room/list.php';
+        }
     }
 
     public function getImage()

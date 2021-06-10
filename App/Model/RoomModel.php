@@ -133,7 +133,7 @@ class RoomModel extends Models implements Model_Interface
         $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
 
         $stmt = $this->connect->prepare($sql);
-        $status = "empty";
+        $status = "Empty";
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
