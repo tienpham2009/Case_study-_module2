@@ -25,6 +25,13 @@ class RoomController
         include 'View/room/list.php';
     }
 
+    function getStatus()
+    {
+        $status = $_GET['status'];
+        $rooms = $this->roomDB->getByStatus($status);
+        include 'View/room/list.php';
+    }
+
     public function getImage()
     {
         $fileError = [];
@@ -90,7 +97,7 @@ class RoomController
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $cates = $this->cateModel->getAll();
             include "View/room/add.php";
         } else {
@@ -133,11 +140,11 @@ class RoomController
                     "checkIn" => $checkIn,
                     "checkOut" => $checkOut,
                     "price" => $price,
-                    "roomId"=> $roomId
+                    "roomId" => $roomId
                 ];
                 $this->roomDB->checkIn($dataCheckIn);
                 header("location:index.php?page=room&action=show-list");
-            }else{
+            } else {
                 include "View/room/check_in.php";
             }
         }

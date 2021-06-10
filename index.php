@@ -1,10 +1,10 @@
 <?php
-include "vendor/autoload.php";
-use App\MiddleWare\Auth;
-session_start();
-$auth = new Auth();
-$auth->isLogin();
-?>
+//include "vendor/autoload.php";
+//use App\MiddleWare\Auth;
+//session_start();
+//$auth = new Auth();
+//$auth->isLogin();
+//?>
 
 <?php ob_start() ?>
 <!doctype html>
@@ -21,7 +21,7 @@ $auth->isLogin();
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
-<?php include "View/core/view.php" ?>
+<?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
@@ -73,6 +73,17 @@ $auth->isLogin();
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
+            </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hiên phòng theo trạng thái
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="index.php?page=room&action=status=empty" >Empty</a>
+                    <a class="dropdown-item" href="index.php?page=room&action=status=Rented">Rented</a>
+                </div>
+            </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search">
