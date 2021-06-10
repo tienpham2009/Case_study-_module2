@@ -170,9 +170,10 @@ class RoomModel extends Models implements Model_Interface
 
     public function search($search)
     {
-        $sql = 'select * from v_room where name = :search ';
+        $sql = 'select * from v_room where name like :text ';
         $stmt = $this->connect->prepare($sql);
-        $stmt->bindParam(":search", $search);
+        $txt = '%' . $search . '%';
+        $stmt->bindParam(":text", $txt);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $rooms = [];

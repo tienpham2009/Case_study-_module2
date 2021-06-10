@@ -205,7 +205,11 @@ class RoomController
     public function search()
     {
         $search = $_POST["search"];
-        $rooms = $this->roomDB->search($search);
+        if (empty($search)){
+            $rooms = $this->roomDB->getAll();
+        }else{
+            $rooms = $this->roomDB->search($search);
+        }
         include "View/room/list.php";
     }
 }
