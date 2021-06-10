@@ -9,14 +9,14 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">Đơn giá</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="unit_price" >
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="unit_price">
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">Loại phòng</label>
         <select class="form-control" name="category" id="exampleFormControlInput1">
-            <option value="Vip">Vip</option>
-            <option value="Đôi">Đôi</option>
-            <option value="Đơn">Đơn</option>
+            <?php foreach ($cates as $cate): ?>
+                <option value="<?php echo $cate->id ?>"><?php echo $cate->name ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
     <div class="form-group">

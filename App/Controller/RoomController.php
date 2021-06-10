@@ -54,9 +54,9 @@ class RoomController
     public function error()
     {
         $error = [];
-        $fields = ["name","description","unit_price","category"];
-        foreach ($fields as $field){
-            if (empty($_POST[$field])){
+        $fields = ["name", "description", "unit_price", "category"];
+        foreach ($fields as $field) {
+            if (empty($_POST[$field])) {
                 $error[$field] = "Không được để trống";
             }
         }
@@ -81,19 +81,19 @@ class RoomController
             "image" => $image
         ];
 
-         return new Room($data);
+        return new Room($data);
     }
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
-             include "View/room/add.php";
-        }else{
-            if (empty($this->error())){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            include "View/room/add.php";
+        } else {
+            if (empty($this->error())) {
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-                header("Location:./index.php?page=room&action=show-list");
-            }else{
+                header("location:index.php?page=room&action=show-list");
+            } else {
                 include "View/room/add.php";
             }
 
@@ -103,7 +103,27 @@ class RoomController
     function delete()
     {
         $id = $_GET['id'];
-        $room = $this->roomDB->delete($id);
+        $this->roomDB->delete($id);
         header('Location:index.php');
+    }
+
+    function update()
+    {
+        $id = $_GET['id'];
+        //var_dump($id);die();
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $this->roomDB->getById($id);
+            include "View/room/update.php";
+        } else {
+            if (empty($this->error())) {
+                $id = $_GET['id'];
+                $room = $this->getDataRoom();
+                $this->roomDB->update($id,$room);
+                header("location:index.php?page=room&action=show-list");
+            } else {
+                include "View/room/update.php";
+            }
+
+        }
     }
 }
