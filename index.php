@@ -23,11 +23,7 @@ $auth->isLogin();
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<<<<<<< HEAD
 <?php include "View/core/view.php" ?>
-
-=======
->>>>>>> 53905237ba8ff7e403ea28cb00ba104339fd669e
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
@@ -62,10 +58,10 @@ $auth->isLogin();
                         <a class="dropdown-item" href="#">Quên mật khẩu</a>
                         <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng ký thành viên</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>
                         <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
