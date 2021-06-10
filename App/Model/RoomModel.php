@@ -62,20 +62,35 @@ class RoomModel extends Models implements Model_Interface
     }
 
     function update($id,$object){
-        $sql='update room 
+        if ($object->image != ""){
+            $sql='update room 
             set name=:name,
             description=:description,
             image=:image,
             unit_price=:unit_price,
             category_id=:category where Id=:id';
-        $stmt = $this->connect->prepare($sql);
+            $stmt = $this->connect->prepare($sql);
 
-        $stmt->bindParam(":name", $object->name);
-        $stmt->bindParam(":description", $object->description);
-        $stmt->bindParam(":image", $object->image);
-        $stmt->bindParam(":unit_price", $object->unit_price);
-        $stmt->bindParam(":category", $object->cateName);
-        $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":image", $object->image);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }else{
+            $sql='update room 
+            set name=:name,
+            description=:description,
+            unit_price=:unit_price,
+            category_id=:category where Id=:id';
+            $stmt = $this->connect->prepare($sql);
+
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }
 
         return $stmt->execute();
     }

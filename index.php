@@ -1,10 +1,10 @@
 <?php
-include "vendor/autoload.php";
-use App\MiddleWare\Auth;
-session_start();
-$auth = new Auth();
-$auth->isLogin();
-?>
+//include "vendor/autoload.php";
+//use App\MiddleWare\Auth;
+//session_start();
+//$auth = new Auth();
+//$auth->isLogin();
+//?>
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
