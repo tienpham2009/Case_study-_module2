@@ -5,6 +5,7 @@ namespace App\Model;
 
 
 use App\Room;
+use http\Exception\BadMethodCallException;
 use PDO;
 
 class RoomModel extends Models implements Model_Interface
@@ -33,6 +34,25 @@ class RoomModel extends Models implements Model_Interface
         $sql = 'select * from v_room where Id= ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
+    }
+
+    function getByStatus($status){
+        $sql = 'select * from v_room where status=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $status);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $rooms = [];
@@ -129,9 +149,22 @@ class RoomModel extends Models implements Model_Interface
         $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
 
         $stmt = $this->connect->prepare($sql);
-        $status = "empty";
+        $status = "Empty";
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
+    }
+
+    public function countByStatus($status)
+    {
+        $sql = "SELECT COUNT(Id) AS count, status FROM `room` WHERE status = :status ";
+
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":status", $status);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0];
+
     }
 }
