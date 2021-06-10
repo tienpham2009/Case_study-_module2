@@ -32,7 +32,9 @@ switch ($page) {
             case "check_out":
                 $roomController->checkOut();
                 break;
-
+            case 'status':
+                $roomController->getStatus();
+                break;
         }
         break;
     case 'user':

@@ -48,6 +48,25 @@ class RoomModel extends Models implements Model_Interface
         return $rooms;
     }
 
+    function getByStatus($status){
+        $sql = 'select * from v_room where status=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $status);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
+    }
+
     public function add($object)
     {
         $sql = "INSERT INTO room( name,description,image,unit_price,category_id ) 
@@ -114,7 +133,7 @@ class RoomModel extends Models implements Model_Interface
         $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
 
         $stmt = $this->connect->prepare($sql);
-        $status = "empty";
+        $status = "Empty";
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
