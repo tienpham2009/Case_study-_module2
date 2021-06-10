@@ -24,5 +24,6 @@ switch ($page) {
             case "show-list":
                 $roomController->index();
                 break;
+
         }
 }
