@@ -8,21 +8,18 @@ class Room
     public string $description;
     public string $image;
     public string $unit_price;
-    public string $status;
-    public string $category;
-    public string $check_in;
-    public string $check_out;
+    public mixed $status;
+    public string $cateName;
+    public mixed $check_in;
+    public mixed $check_out;
 
     public function __construct($data)
     {
         $this->name = $data["name"];
         $this->description = $data["description"];
         $this->image = $data["image"];
-        $this->unit_price = $data["unit_price"];
-        $this->status = $data["status"];
-        $this->category = $data["category"];
-        $this->check_in = $data["check_in"];
-        $this->check_out = $data["check_out"];
+        $this->unit_price = (int)$data["unit_price"];
+        $this->cateName = $data["cateName"];
     }
 
     /**
@@ -39,6 +36,54 @@ class Room
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(mixed $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCheckIn(): string
+    {
+        return $this->check_in;
+    }
+
+    /**
+     * @param string $check_in
+     */
+    public function setCheckIn(mixed $check_in): void
+    {
+        $this->check_in = $check_in;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCheckOut(): string
+    {
+        return $this->check_out;
+    }
+
+    /**
+     * @param string $check_out
+     */
+    public function setCheckOut(mixed $check_out): void
+    {
+        $this->check_out = $check_out;
     }
 
 }

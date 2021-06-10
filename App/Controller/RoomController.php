@@ -1,49 +1,67 @@
 <?php
+
 namespace App\Controller;
 
 use App\Model\RoomModel;
+use App\Room;
 
 class RoomController
 {
-    public $roomDB;
+    public RoomModel $roomDB;
 
     public function __construct()
     {
         $this->roomDB = new RoomModel();
     }
 
-    function index(){
-        $rooms=$this->roomDB->getAll();
-        include '../../View/room/list.php';
+
+    function index()
+    {
+        $rooms = $this->roomDB->getAll();
+        include 'View/room/list.php';
     }
+
     public function getImage()
     {
         $fileError = [];
         $target_dir = "Public/Image/";
-        $target_name = basename($_FILES["fileToUpload"]["name"]);
+        $target_name = basename($_FILES["image"]["name"]);
 
-        $target_file = $target_dir. $target_name;
+        $target_file = $target_dir . $target_name;
 
-        if ($_FILES["fileToUpload"]["size"] > 5000000){
+        if ($_FILES["image"]["size"] > 5000000) {
             $fileError["fileUpload"] = "Chỉ được upload file dưới 5MB";
         }
 
-        $file_type = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
+        $file_type = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
-        $file_type_allow = ["jpg","png","jpeg","gif"];
+        $file_type_allow = ["jpg", "png", "jpeg", "gif"];
 
-        if (!in_array(strtolower($file_type), $file_type_allow)){
+        if (!in_array(strtolower($file_type), $file_type_allow)) {
             $fileError["fileUpload"] = "Chỉ được upload file ảnh";
         }
 
-        if (file_exists($target_file)){
+        if (file_exists($target_file)) {
             $fileError["fileUpload"] = "File đã tồn tại trên hệ thống";
         }
 
-        if (empty($fileError)){
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+        if (empty($fileError)) {
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
         }
         return $target_name;
+    }
+
+    public function error()
+    {
+        $error = [];
+        $fields = ["name", "description", "unit_price", "category"];
+        foreach ($fields as $field) {
+            if (empty($_POST[$field])) {
+                $error[$field] = "Không được để trống";
+            }
+        }
+
+        return $error;
     }
 
     public function getDataRoom()
@@ -51,10 +69,7 @@ class RoomController
         $name = $_POST["name"];
         $description = $_POST["description"];
         $unit_price = $_POST["unit_price"];
-        $status = $_POST["status"];
         $category = $_POST["category"];
-        $check_in = $_POST["check_in"];
-        $check_out = $_POST["check_out"];
         $image = $this->getImage();
 
         $data = [
@@ -62,26 +77,53 @@ class RoomController
             "name" => $name,
             "description" => $description,
             "unit_price" => $unit_price,
-            "status" => $status,
             "category" => $category,
-            "check_in" => $check_in,
-            "check_out" => $check_out,
             "image" => $image
         ];
+
+        return new Room($data);
     }
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            include "../../View/room/add.php";
-        }else{
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            include "View/room/add.php";
+        } else {
+            if (empty($this->error())) {
+                $room = $this->getDataRoom();
+                $this->roomDB->add($room);
+                header("location:index.php?page=room&action=show-list");
+            } else {
+                include "View/room/add.php";
+            }
 
         }
     }
 
-    function delete(){
-        $id=$_GET['id'];
-        $room = $this->roomDB->delete($id);
+    function delete()
+    {
+        $id = $_GET['id'];
+        $this->roomDB->delete($id);
         header('Location:index.php');
+    }
+
+    function update()
+    {
+        $id = $_GET['id'];
+        //var_dump($id);die();
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $this->roomDB->getById($id);
+            include "View/room/update.php";
+        } else {
+            if (empty($this->error())) {
+                $id = $_GET['id'];
+                $room = $this->getDataRoom();
+                $this->roomDB->update($id,$room);
+                header("location:index.php?page=room&action=show-list");
+            } else {
+                include "View/room/update.php";
+            }
+
+        }
     }
 }
