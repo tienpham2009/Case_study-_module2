@@ -18,19 +18,26 @@
             <div class="card-body">
                 <?php echo $room->status ?>
             </div>
-            <div class="card-body">
-                <?php echo $room->category ?>
+            <div class="card-header">
+                <?php echo $room->cateName ?>
             </div>
             <div class="card-header" >
                 <a href="index.php?page=room&action=update&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-primary">Update
+                        type="button" class="btn btn-primary">Update
                 </a>
                 <a href="index.php?page=room&action=delete&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-danger">Delete
+                        type="button" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa ?')">Delete
                 </a>
+                <?php if($room->status === "empty"): ?>
                 <a href="index.php?page=room&action=check_in&id=<?php echo $room->id ?>"
-                        type="submit" class="btn btn-danger">Check in
+                        type="submit" class="btn btn-info"><?php echo "Check in"?>
                 </a>
+                <?php endif; ?>
+                <?php if($room->status === "Rented"): ?>
+                <a href="index.php?page=room&action=check_out&id=<?php echo $room->id ?>"
+                   type="submit" class="btn btn-info">Check out
+                </a>
+                <?php endif;?>
             </div>
         </div>
     </div>

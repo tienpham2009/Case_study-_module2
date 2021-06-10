@@ -11,15 +11,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Public/Css/view.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online shopping mall</h1>
-            <h5>The center point of the professional programming</h5>
+            <h1>Online H.T.T Motel Manager</h1>
+            <h5>The center point of the professional managing</h5>
         </div>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
@@ -61,8 +59,8 @@
                         Quản lí phòng
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
                         <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
+                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
