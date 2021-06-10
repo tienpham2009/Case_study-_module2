@@ -15,6 +15,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container" style="height: auto">
    <?php include "View/core/header.php"?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">

@@ -25,6 +25,4 @@ switch ($page) {
                 $roomController->index();
                 break;
         }
-        break;
-
 }
