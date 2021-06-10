@@ -29,7 +29,7 @@ class RoomModel extends Models implements Model_Interface
 
     public function getById($id)
     {
-        $sql = 'select * from v_room where Id=?';
+        $sql = 'select * from v_room where Id= ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -100,11 +100,22 @@ class RoomModel extends Models implements Model_Interface
         $sqlRoom = "UPDATE room SET check_in = :check_in , check_out = :check_out , status = :status WHERE Id = :room_id";
 
         $stmtRoom = $this->connect->prepare($sqlRoom);
-        $status = "Đang cho thuê";
+        $status = "Rented";
         $stmtRoom->bindParam("check_in" , $dataCheckIn["checkIn"]);
         $stmtRoom->bindParam("check_out" , $dataCheckIn["checkOut"]);
         $stmtRoom->bindParam("room_id", $dataCheckIn["roomId"]);
         $stmtRoom->bindParam("status", $status);
         $stmtRoom->execute();
+    }
+
+    public function checkOut($id)
+    {
+        $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
+
+        $stmt = $this->connect->prepare($sql);
+        $status = "empty";
+        $stmt->bindParam(":status" , $status);
+        $stmt->bindParam("room_id" , $id);
+        $stmt->execute();
     }
 }

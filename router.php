@@ -27,6 +27,9 @@ switch ($page) {
             case "check_in":
                 $roomController->checkIn();
                 break;
+            case "check_out":
+                $roomController->checkOut();
+                break;
 
         }
 }
