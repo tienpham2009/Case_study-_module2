@@ -1,11 +1,11 @@
 {
-  "name": "vendor_name/case_study_module2",
+  "name": "vendor_name/case-m2-new-v2",
   "description": "description",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
-      "name": "thanh.n5151",
+      "name": "henshim",
       "email": "email@example.com"
     }
   ],
