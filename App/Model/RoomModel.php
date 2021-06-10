@@ -42,14 +42,12 @@ class RoomModel extends Models implements Model_Interface
                 VALUES ( :name , :description ,:image ,:unit_price ,:category ) ";
 
         $stmt = $this->connect->prepare($sql);
-
         $stmt->bindParam(":name", $object->name);
         $stmt->bindParam(":description", $object->description);
         $stmt->bindParam(":image", $object->image);
         $stmt->bindParam(":unit_price", $object->unit_price);
         $stmt->bindParam(":category", $object->category);
-
-        return $stmt->execute();
+        $stmt->execute();
     }
 
     function delete($id)

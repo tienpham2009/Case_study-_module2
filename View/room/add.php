@@ -13,7 +13,11 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">Loại phòng</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="category" >
+        <select class="form-control" name="category" id="exampleFormControlInput1">
+            <option value="Vip">Vip</option>
+            <option value="Đôi">Đôi</option>
+            <option value="Đơn">Đơn</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Hình ảnh</label>

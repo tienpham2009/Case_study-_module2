@@ -89,11 +89,10 @@ class RoomController
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
              include "View/room/add.php";
         }else{
-
             if (empty($this->error())){
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-                header("Location:../index.php");
+                header("location:index.php?page=room&action=show-list");
             }else{
                 include "View/room/add.php";
             }
