@@ -5,7 +5,6 @@ session_start();
 $auth = new Auth();
 $auth->isLogin();
 ?>
-
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
@@ -21,7 +20,7 @@ $auth->isLogin();
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
-<?php include "View/core/view.php" ?>
+<?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
