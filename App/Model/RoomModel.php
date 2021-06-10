@@ -167,4 +167,24 @@ class RoomModel extends Models implements Model_Interface
         return $result[0];
 
     }
+
+    public function search($search)
+    {
+        $sql = 'select * from v_room where name = :search ';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":search", $search);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
+    }
 }

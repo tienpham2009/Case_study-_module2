@@ -38,6 +38,8 @@ switch ($page) {
             case 'status':
                 $roomController->getStatus();
                 break;
+            case "search":
+                $roomController->search();
         }
         break;
     case 'user':
