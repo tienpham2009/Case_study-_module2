@@ -9,16 +9,16 @@
             <div class="card-header">
                 <?php echo $room->name ?>
             </div>
-            <div class="card-header">
+            <div class="card-body">
                 <?php echo $room->description ?>
             </div>
-            <div class="card-header">
+            <div class="card-body">
                 <?php echo $room->unit_price ?>
             </div>
-            <div class="card-header">
+            <div class="card-body">
                 <?php echo $room->status ?>
             </div>
-            <div class="card-header">
+            <div class="card-body">
                 <?php echo $room->category ?>
             </div>
             <div class="card-header" >
