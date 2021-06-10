@@ -29,7 +29,6 @@
                         type="button" class="btn btn-danger">Delete
                 </a>
             </div>
-
         </div>
     </div>
 <?php endforeach; ?>

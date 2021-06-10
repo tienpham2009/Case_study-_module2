@@ -14,7 +14,12 @@
 </head>
 <body>
 <div class="container" style="height: auto">
-   <?php include "View/core/header.php"?>
+    <header class="row">
+        <div class="col-12 col-md-12 shopping-mall">
+            <h1>Online shopping mall</h1>
+            <h5>The center point of the professional programming</h5>
+        </div>
+    </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
         <a class="navbar-brand" href="index.php">Trang chủ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -69,7 +74,7 @@
     <div class="row">
         <article class="col-12 col-sm-9 mt-2">
             <div class="col-12 col-sm-12 row mb-2">
-                <?php include "router.php"?>
+                <?php include "router.php" ?>
             </div>
         </article>
         <aside class="col-12 col-sm-3">
@@ -103,7 +108,11 @@
             </div>
         </aside>
     </div>
- <?php include "View/core/footer.php"?>
+    <footer class="card mb-2" id="footer">
+        <div class="text-center">
+            <p class="mt-3">CodeGym &copy; 2021</p>
+        </div>
+    </footer>
 </div>
 
 

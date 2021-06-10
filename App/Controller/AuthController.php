@@ -22,7 +22,7 @@ class AuthController
             if (!$result) {
                 header("Location: ../../index.php");
             }else{
-                header("Location: View/login/login.php");
+                header("Location: View/user/user.php");
             }
         }
     }

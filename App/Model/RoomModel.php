@@ -34,7 +34,7 @@ class RoomModel extends Models implements Model_Interface
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function add($object)
@@ -61,6 +61,7 @@ class RoomModel extends Models implements Model_Interface
         $stmt->bindParam(":image", $object->image);
         $stmt->bindParam(":unit_price", $object->unit_price);
         $stmt->bindParam(":category", $object->category);
+        $stmt->bindParam(":id", $object->$id);
 
         return $stmt->execute();
     }

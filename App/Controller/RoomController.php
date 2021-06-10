@@ -94,9 +94,9 @@ class RoomController
                 $this->roomDB->add($room);
                 header("location:index.php?page=room&action=show-list");
             } else {
-                include "View/room/add.php";
-            }
 
+                header("location:index.php?page=room&action=show-list");
+            }
         }
     }
 
@@ -104,7 +104,7 @@ class RoomController
     {
         $id = $_GET['id'];
         $this->roomDB->delete($id);
-        header('Location:index.php');
+        header('Location:index.php?page=room&action=show-list');
     }
 
     function update()
@@ -112,13 +112,14 @@ class RoomController
         $id = $_GET['id'];
         //var_dump($id);die();
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $this->roomDB->getById($id);
+            $room = $this->roomDB->getById($id);
+
             include "View/room/update.php";
         } else {
             if (empty($this->error())) {
                 $id = $_GET['id'];
                 $room = $this->getDataRoom();
-                $this->roomDB->update($id,$room);
+                $room = $this->roomDB->update($id, $room);
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";

@@ -1,8 +1,8 @@
-<div class="card-header">
-    Update Room
-</div>
+<!--<div class="card-header">-->
+<!--    Update Room-->
+<!--</div>-->
 <form method="post" enctype="multipart/form-data"
-      action="./index.php?page=room&action=update&id=<?php echo $room->id ?>">
+      action="./index.php?page=room&action=update&id=<?php var_dump($room);die(); echo $room->id ?>">
     <div class="form-group">
         <input type="hidden" value="<?php echo $room->id ?>" name="id">
         <label class="form-label" for="exampleFormControlInput1">Tên phòng</label>
