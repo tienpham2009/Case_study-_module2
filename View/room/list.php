@@ -28,8 +28,10 @@
                 <a href="index.php?page=room&action=delete&id=<?php echo $room->id ?>"
                         type="button" class="btn btn-danger">Delete
                 </a>
+                <a href="index.php?page=room&action=check_in&id=<?php echo $room->id ?>"
+                        type="submit" class="btn btn-info">Check in
+                </a>
             </div>
-
         </div>
     </div>
 <?php endforeach; ?>

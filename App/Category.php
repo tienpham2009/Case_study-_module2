@@ -11,7 +11,7 @@ class Category
 
     public function __construct($data)
     {
-        $this->name=$data['catName'];
+        $this->name=$data['cateName'];
     }
 
     /**

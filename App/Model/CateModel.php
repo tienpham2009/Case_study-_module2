@@ -20,6 +20,7 @@ class CateModel extends Models implements Model_Interface
             $cate->setId($item['id']);
             $cates[] = $cate;
         }
+        return $cates;
     }
 
     public function getById($id)

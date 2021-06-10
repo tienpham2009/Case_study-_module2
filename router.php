@@ -24,5 +24,9 @@ switch ($page) {
             case "show-list":
                 $roomController->index();
                 break;
+            case "check_in":
+                $roomController->checkIn();
+                break;
+
         }
 }
