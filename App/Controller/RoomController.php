@@ -51,7 +51,7 @@ class RoomController
         return $target_name;
     }
 
-    public function error()
+    public function error(): array
     {
         $error = [];
         $fields = ["name","description","unit_price","category"];
@@ -86,20 +86,28 @@ class RoomController
 
     public function add()
     {
+
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-             include "View/room/add.php";
+            include "View/room/add.php";
         }else{
-            if (empty($this->error())){
+            $error = $this->error();
+            if (empty($error)){
                 $room = $this->getDataRoom();
                 $this->roomDB->add($room);
-
                 header("location:index.php?page=room&action=show-list");
-
             }else{
                 include "View/room/add.php";
             }
 
         }
+    }
+
+    public function checkIn()
+    {
+        $id = $_GET["id"];
+        $rooms = $this->roomDB->getById($id);
+        $room = $rooms[0];
+        include "View/room/check_in.php";
     }
 
     function delete()
