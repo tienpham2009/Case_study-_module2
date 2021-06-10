@@ -16,14 +16,11 @@ class AuthController
 
     public function checkEmailPassword()
     {
-//        if (isset($_POST['email'])) {
         $result = $this->userModel->getById($_REQUEST);
-
         if ($result !== false) {
             $_SESSION['userLogin'] = $result['email'];
             header("Location: ../../index.php");
         }
         return false;
-//        }
     }
 }

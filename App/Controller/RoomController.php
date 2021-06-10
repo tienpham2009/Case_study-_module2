@@ -96,7 +96,6 @@ class RoomController
             }else{
                 include "View/room/add.php";
             }
-
         }
     }
 
