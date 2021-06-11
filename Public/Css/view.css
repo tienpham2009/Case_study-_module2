@@ -32,3 +32,16 @@
 .error{
     color: red;
 }
+
+#user {
+    width: 30px;
+    height: 30px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+}
+
+/*#header{*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*}*/
