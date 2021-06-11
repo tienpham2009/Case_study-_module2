@@ -6,7 +6,7 @@ class Auth
 {
     public function isLogin()
     {
-        if (!isset($_SESSION['userLogin'])) {
+        if (!isset($_SESSION['id'])) {
         header("Location: View/user/login.php");
         }
     }
