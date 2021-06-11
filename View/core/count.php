@@ -1,7 +1,7 @@
 <?php
 
 use App\Controller\RoomController;
-include __DIR__ . "/vendor/autoload.php";
+include __DIR__ . "./vendor/autoload.php";
 $status = $_REQUEST["status"] ?? null;
 
 $roomController = new RoomController();

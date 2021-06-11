@@ -13,7 +13,6 @@ $roomController = new RoomController();
 $authController = new AuthController();
 
 
-
 switch ($page) {
     case 'room':
         switch ($action) {
@@ -41,10 +40,13 @@ switch ($page) {
             case "search":
                 $roomController->search();
                 break;
+            case "statistical":
+                $roomController->statistical();
+                break;
         }
         break;
     case 'user':
-        switch ($action){
+        switch ($action) {
             case 'logout':
                 $authController->logout();
                 break;
@@ -62,6 +64,8 @@ switch ($page) {
                 break;
         }
         break;
-
+//    default:
+//        include "View/core/home.php";
+//        break;
 }
 ?>
