@@ -8,6 +8,7 @@ session_start();
 $auth = new Auth();
 $auth->isLogin();
 $authController = new AuthController();
+$data = $authController->getByid();
 ?>
 <?php ob_start() ?>
 <!doctype html>
@@ -48,6 +49,12 @@ $authController = new AuthController();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Liên hệ</a>
                 </li>
+<<<<<<< HEAD
+=======
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hỏi đáp</a>
+                </li>
+>>>>>>> a9344eded376169878858569e1e8c8a13439df06
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,22 +77,24 @@ $authController = new AuthController();
             </form>
             <li class="nav-item dropdown">
                 <div class="row">
-                    <div class="col-12" style="margin-left: 150px">
-                        <img src="Public/Image/user/unnamed1.jpeg" id="user"
-                             style="float: left;margin-right: 20px">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Tài khoản
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá
-                                nhân </a>
-                            <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký
-                                thành
-                                viên</a>
-                            <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
-                            <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
-                        </div>
+                    <div class=" col-12" style="margin-left: 150px">
+                        <li class="nav-item">
+                            <img id="user" src="<?php echo $data['image'] ?>"
+                                 style="float: left ; margin-right: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $data['user_name'] ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành
+                                    viên</a>
+                                <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
+                            </div>
+                        </li>
                     </div>
                 </div>
             </li>
@@ -110,6 +119,18 @@ $authController = new AuthController();
                         <div class="carousel-item" data-interval="5000">
                             <img src="Public/Image/Vip.jpg" class="d-block w-100" alt="...">
                         </div>
+            </div>
+        </article>
+        <aside class="col-12 col-sm-3">
+            <div class="card poly-cart">
+                <div class="card-body row">
+                    <p class="col-sm-9"><?php include "View/core/count.php" ?></p>
+                </div>
+                <div class="card mt-3 mb-3">
+                    <div class="card-body">
+                        <form>
+                            <input placeholder="Từ khoá" class="form-control"/>
+                        </form>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                             data-bs-slide="prev">

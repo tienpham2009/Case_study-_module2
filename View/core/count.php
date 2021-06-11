@@ -1,9 +1,7 @@
 <?php
-
 use App\Controller\RoomController;
-include "./vendor/autoload.php";
+include "vendor/autoload.php";
 $status = $_REQUEST["status"] ?? null;
-
 $roomController = new RoomController();
 $count = $roomController->countByStatus();
 if ($count["status"] == "Empty"){
