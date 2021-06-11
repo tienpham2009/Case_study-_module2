@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Model\CateModel;
-use App\Model\Models;
 use App\Model\RoomModel;
 use App\Room;
 
@@ -16,6 +15,11 @@ class RoomController
     {
         $this->roomDB = new RoomModel();
         $this->cateModel = new CateModel();
+    }
+
+    public function getDataCheckIn()
+    {
+
     }
 
 
@@ -217,5 +221,11 @@ class RoomController
             $rooms = $this->roomDB->search($search);
         }
         include "View/room/list.php";
+    }
+
+    public function statistical()
+    {
+        $payments = $this->roomDB->statistical();
+        include "View/room/statistical.php";
     }
 }

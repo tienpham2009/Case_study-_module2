@@ -57,7 +57,7 @@ $data = $authController->getByid();
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
                         <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
-                        <a class="dropdown-item" href="#">Thông kê</a>
+                        <a class="dropdown-item" href="index.php?page=room&action=statistical">Thông kê</a>
                     </div>
                 </li>
                 <div class="form-inline my-3 my-lg-0">
@@ -95,7 +95,29 @@ $data = $authController->getByid();
 <div class="container" style="height: auto">
     <div class="row">
         <article class="col-12 col-sm-9 mt-2">
-            <div class="col-12 col-sm-12 row mb-2">
+<!--            slide-->
+            <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: scroll">
+                <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="5000">
+                            <img src="Public/Image/Single.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-interval="5000">
+                            <img src="Public/Image/Double.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-interval="5000">
+                            <img src="Public/Image/Vip.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
                 <?php include "router.php" ?>
             </div>
         </article>
