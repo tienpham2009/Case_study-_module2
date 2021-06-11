@@ -107,4 +107,11 @@ session_start();
             } else
                 $('#message').html('Password không khớp').css('color', 'red');
         });
+        $('#phone').on('keyup', function () {
+            if ($('#password').val() === $('#confirm_password').val()) {
+                $('#message').html('Password khớp').css('color', 'green');
+            } else
+                $('#message').html('Password không khớp').css('color', 'red');
+        });
     </script>
+

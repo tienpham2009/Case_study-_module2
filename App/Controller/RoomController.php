@@ -40,8 +40,13 @@ class RoomController
 
     function countByStatus()
     {
-        $status = $_GET['status'];
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+        } else {
+            $status = "ERROR";
+        }
         return $this->roomDB->countByStatus($status);
+
     }
 
     public function getImage()
@@ -167,7 +172,7 @@ class RoomController
     {
         $id = $_GET['id'];
         $room = $this->roomDB->getById($id);
-        unlink("Public/Image/". $room[0]->image);
+        unlink("Public/Image/" . $room[0]->image);
         $this->roomDB->delete($id);
         header('Location:index.php?page=room&action=show-list');
     }
@@ -184,11 +189,11 @@ class RoomController
             $error = $this->error();
             if (empty($this->error())) {
                 $rooms = $this->getDataRoom();
-                if ($rooms->image != ""){
+                if ($rooms->image != "") {
                     $room = $this->roomDB->getById($id);
                     unlink("Public/Image/" . $room[0]->image);
                     $this->roomDB->update($id, $rooms);
-                }else{
+                } else {
                     $this->roomDB->update($id, $rooms);
                 }
                 header("location:index.php?page=room&action=show-list");
@@ -210,9 +215,9 @@ class RoomController
     public function search()
     {
         $search = $_POST["search"];
-        if (empty($search)){
+        if (empty($search)) {
             $rooms = $this->roomDB->getAll();
-        }else{
+        } else {
             $rooms = $this->roomDB->search($search);
         }
         include "View/room/list.php";

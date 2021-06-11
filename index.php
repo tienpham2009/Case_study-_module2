@@ -6,6 +6,7 @@ session_start();
 $auth = new Auth();
 $auth->isLogin();
 $authController = new AuthController();
+$data = $authController->getByid();
 ?>
 <?php ob_start() ?>
 <!doctype html>
@@ -69,11 +70,11 @@ $authController = new AuthController();
                 <div class="row">
                     <div class=" col-12" style="margin-left: 150px">
                         <li class="nav-item">
-                            <img id="user" src="Public/Image/user/unnamed1.jpeg"
+                            <img id="user" src="<?php echo $data['image'] ?>"
                                  style="float: left ; margin-right: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tài khoản
+                                <?php echo $data['user_name'] ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân </a>

@@ -32,6 +32,9 @@
             {echo "Public/images/user/anonymous.jpeg";
             }else{ echo  $result['image'];}  ?>"></div>
         <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+        <input type="hidden" name="image-name" value="<?php if ($result['image'] === "Public/images/user/")
+        {echo "Public/images/user/anonymous.jpeg";
+        }else{ echo  $result['image'];}  ?>" >
     </div>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
