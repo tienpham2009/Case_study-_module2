@@ -7,9 +7,12 @@ require __DIR__ . "/vendor/autoload.php";
 
 $page = $_REQUEST["page"] ?? null;
 $action = $_REQUEST["action"] ?? null;
+$status = $_REQUEST["status"] ?? null;
 
 $roomController = new RoomController();
 $authController = new AuthController();
+
+
 
 switch ($page) {
     case 'room':
@@ -32,7 +35,12 @@ switch ($page) {
             case "check_out":
                 $roomController->checkOut();
                 break;
-
+            case 'status':
+                $roomController->getStatus();
+                break;
+            case "search":
+                $roomController->search();
+                break;
         }
         break;
     case 'user':

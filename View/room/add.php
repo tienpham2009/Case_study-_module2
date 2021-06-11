@@ -14,21 +14,21 @@
         <?php endif;?>
     </div>
     <div class="form-group">
-        <label class="form-label" for="exampleFormControlInput1">Đơn giá</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="unit_price" >
-        <?php if (isset($error["unit_price"])):?>
-            <p class="error" ><?php echo $error["unit_price"] ?></p>
-        <?php endif;?>
-    </div>
-    <div class="form-group">
         <label class="form-label" for="exampleFormControlInput1">Loại phòng</label>
-        <select class="form-control" name="cateName" id="exampleFormControlInput1">
+        <select class="form-control" name="cateName" id="category">
             <?php foreach ($cates as $cate): ?>
                 <option value="<?php echo $cate->id ?>"><?php echo $cate->name ?></option>
             <?php endforeach; ?>
         </select>
         <?php if (isset($error["cateName"])):?>
             <p class="error" ><?php echo $error["cateName"] ?></p>
+        <?php endif;?>
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="exampleFormControlInput1" >Đơn giá</label>
+        <input type="text" class="form-control" id="unitPrice" name="unit_price" >
+        <?php if (isset($error["unit_price"])):?>
+            <p class="error" ><?php echo $error["unit_price"] ?></p>
         <?php endif;?>
     </div>
     <div class="form-group">

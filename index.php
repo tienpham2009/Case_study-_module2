@@ -1,16 +1,17 @@
 <?php
 include "vendor/autoload.php";
 use App\MiddleWare\Auth;
+use App\Controller\AuthController;
 session_start();
 $auth = new Auth();
 $auth->isLogin();
+$authController = new AuthController();
 ?>
-
 <?php ob_start() ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>H.T.T Motel Manager</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,13 +20,14 @@ $auth->isLogin();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Public/Css/view.css">
+    <link rel="shortcut icon" href="Public/Image/icon2.png">
 </head>
 <body>
 <?php //include "View/core/view.php" ?>
-<div class="container" style="height: auto">
+<div class="container" style="height: auto" id="header">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online H.T.T Motel Manager</h1>
+            <h1>H.T.T Motel Manager</h1>
             <h5>The center point of the professional managing</h5>
         </div>
     </header>
@@ -46,20 +48,38 @@ $auth->isLogin();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Hỏi đáp</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tài khoản
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>
-                        <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
-                    </div>
-                </li>
+                <!--<<<<<<< HEAD-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+                <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                        Tài khoản-->
+                <!--                    </a>-->
+                <!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--=======-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+                <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                        Tài khoản-->
+                <!--                    </a>-->
+                <!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                <!--                        <a class="dropdown-item" href="#">Thông tin cá nhân </a>-->
+                <!--                        <a class="dropdown-item" href="#">Quên mật khẩu</a>-->
+                <!--                        <a class="dropdown-item" href="#">Đổi mật khẩu</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>-->
+                <!--                        <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,13 +91,39 @@ $auth->isLogin();
                         <a class="dropdown-item" href="#">Thông kê</a>
                     </div>
                 </li>
+                <div class="form-inline my-3 my-lg-0">
+                    <form class="form-inline my-2 my-lg-0" method="post" action="index.php?page=room&action=search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search"
+                               name="search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class=" col-12" style="margin-left: 150px">
+                        <li class="nav-item">
+                            <img id="user" src="Public/Image/user/unnamed1.jpeg"
+                                 style="float: left ; margin-right: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành
+                                    viên</a>
+                                <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
+                            </div>
+                        </li>
+                    </div>
+                </div>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-            </form>
         </div>
     </nav>
+</div>
+<div class="container" style="height: auto">
     <div class="row">
         <article class="col-12 col-sm-9 mt-2">
             <div class="col-12 col-sm-12 row mb-2">
@@ -87,32 +133,25 @@ $auth->isLogin();
         <aside class="col-12 col-sm-3">
             <div class="card poly-cart">
                 <div class="card-body row">
-                    <img class="col-sm-5" src="images/shoppingcart.gif"/>
-                    <ul class="col-sm-7">
-                        <li>100 items</li>
-                        <li>$56.8</li>
-                        <li><a href="#">Xem giỏ hàng</a></li>
-                    </ul>
+<!--                    <p class="col-sm-9">--><?php //include "View/core/count.php" ?><!--</p>-->
                 </div>
-            </div>
-            <div class="card mt-3 mb-3">
-                <div class="card-body">
-                    <form>
-                        <input placeholder="Từ khoá" class="form-control"/>
-                    </form>
+                <div class="card mt-3 mb-3">
+                    <div class="card-body">
+                        <form>
+                            <input placeholder="Từ khoá" class="form-control"/>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="list-group">
-                <a href="" type="button" class="list-group-item list-group-item-action active">
-                    Phòng trống
-                </a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Phòng đang cho thuê</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-                <a href="" type="button" class="list-group-item list-group-item-action">Máy tính xách tay</a>
-            </div>
+                <div class="list-group">
+                    <a href="" type="button" class="list-group-item list-group-item-action active">
+                        Hiển thị phòng theo trạng thái
+                    </a>
+                    <a href="index.php?page=room&action=status&status=Empty" type="button"
+                       class="list-group-item list-group-item-action">Phòng trống</a>
+                    <a href="index.php?page=room&action=status&status=Rented" type="button"
+                       class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
+                    <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
+                </div>
         </aside>
     </div>
 </div>

@@ -5,6 +5,7 @@ namespace App\Model;
 
 
 use App\Room;
+use http\Exception\BadMethodCallException;
 use PDO;
 
 class RoomModel extends Models implements Model_Interface
@@ -48,6 +49,25 @@ class RoomModel extends Models implements Model_Interface
         return $rooms;
     }
 
+    function getByStatus($status){
+        $sql = 'select * from v_room where status=?';
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(1, $status);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
+    }
+
     public function add($object)
     {
         $sql = "INSERT INTO room( name,description,image,unit_price,category_id ) 
@@ -62,20 +82,35 @@ class RoomModel extends Models implements Model_Interface
     }
 
     function update($id,$object){
-        $sql='update room 
+        if ($object->image != ""){
+            $sql='update room 
             set name=:name,
             description=:description,
             image=:image,
             unit_price=:unit_price,
             category_id=:category where Id=:id';
-        $stmt = $this->connect->prepare($sql);
+            $stmt = $this->connect->prepare($sql);
 
-        $stmt->bindParam(":name", $object->name);
-        $stmt->bindParam(":description", $object->description);
-        $stmt->bindParam(":image", $object->image);
-        $stmt->bindParam(":unit_price", $object->unit_price);
-        $stmt->bindParam(":category", $object->cateName);
-        $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":image", $object->image);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }else{
+            $sql='update room 
+            set name=:name,
+            description=:description,
+            unit_price=:unit_price,
+            category_id=:category where Id=:id';
+            $stmt = $this->connect->prepare($sql);
+
+            $stmt->bindParam(":name", $object->name);
+            $stmt->bindParam(":description", $object->description);
+            $stmt->bindParam(":unit_price", $object->unit_price);
+            $stmt->bindParam(":category", $object->cateName);
+            $stmt->bindParam(":id", $id);
+        }
 
         return $stmt->execute();
     }
@@ -114,9 +149,43 @@ class RoomModel extends Models implements Model_Interface
         $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
 
         $stmt = $this->connect->prepare($sql);
-        $status = "empty";
+        $status = "Empty";
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
+    }
+
+    public function countByStatus($status)
+    {
+        $sql = "SELECT COUNT(Id) AS count, status FROM `room` WHERE status = :status ";
+
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":status", $status);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0];
+
+    }
+
+    public function search($search)
+    {
+        $sql = 'select * from v_room where name like :text ';
+        $stmt = $this->connect->prepare($sql);
+        $txt = '%' . $search . '%';
+        $stmt->bindParam(":text", $txt);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rooms = [];
+
+        foreach ($result as $item) {
+            $room = new Room($item);
+            $room->setId($item['Id']);
+            $room->setStatus($item["status"]);
+            $room->setCheckIn($item["check_in"]);
+            $room->setCheckOut($item["check_out"]);
+            $rooms[] = $room;
+        }
+        return $rooms;
     }
 }

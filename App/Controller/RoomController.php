@@ -25,6 +25,21 @@ class RoomController
         include 'View/room/list.php';
     }
 
+    function getStatus()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $status = $_GET['status'];
+            $rooms = $this->roomDB->getByStatus($status);
+            include 'View/room/list.php';
+        }
+    }
+
+    function countByStatus()
+    {
+        $status = $_GET['status'];
+        return $this->roomDB->countByStatus($status);
+    }
+
     public function getImage()
     {
         $fileError = [];
@@ -90,7 +105,7 @@ class RoomController
 
     public function add()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $cates = $this->cateModel->getAll();
             include "View/room/add.php";
         } else {
@@ -133,11 +148,11 @@ class RoomController
                     "checkIn" => $checkIn,
                     "checkOut" => $checkOut,
                     "price" => $price,
-                    "roomId"=> $roomId
+                    "roomId" => $roomId
                 ];
                 $this->roomDB->checkIn($dataCheckIn);
                 header("location:index.php?page=room&action=show-list");
-            }else{
+            } else {
                 include "View/room/check_in.php";
             }
         }
@@ -147,22 +162,31 @@ class RoomController
     function delete()
     {
         $id = $_GET['id'];
+        $room = $this->roomDB->getById($id);
+        unlink("Public/Image/". $room[0]->image);
         $this->roomDB->delete($id);
         header('Location:index.php?page=room&action=show-list');
     }
 
     function update()
     {
+
         $id = $_GET['id'];
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $room = $this->roomDB->getById($id);
             $cates = $this->cateModel->getAll();
             include "View/room/update.php";
         } else {
+            $error = $this->error();
             if (empty($this->error())) {
-                $id = $_GET['id'];
                 $rooms = $this->getDataRoom();
-                $this->roomDB->update($id, $rooms);
+                if ($rooms->image != ""){
+                    $room = $this->roomDB->getById($id);
+                    unlink("Public/Image/" . $room[0]->image);
+                    $this->roomDB->update($id, $rooms);
+                }else{
+                    $this->roomDB->update($id, $rooms);
+                }
                 header("location:index.php?page=room&action=show-list");
             } else {
                 include "View/room/update.php";
@@ -176,5 +200,16 @@ class RoomController
         $id = $_GET["id"];
         $this->roomDB->checkOut($id);
         header("location:index.php?page=room&action=show-list");
+    }
+
+    public function search()
+    {
+        $search = $_POST["search"];
+        if (empty($search)){
+            $rooms = $this->roomDB->getAll();
+        }else{
+            $rooms = $this->roomDB->search($search);
+        }
+        include "View/room/list.php";
     }
 }
