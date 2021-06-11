@@ -1,9 +1,11 @@
 <?php
 include "vendor/autoload.php";
 use App\MiddleWare\Auth;
+use App\Controller\AuthController;
 session_start();
 $auth = new Auth();
 $auth->isLogin();
+$authController = new AuthController();
 ?>
 <?php ob_start() ?>
 <!doctype html>
@@ -23,7 +25,7 @@ $auth->isLogin();
 <body>
 <?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto" id="header">
-    <header class="row" >
+    <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
             <h1>H.T.T Motel Manager</h1>
             <h5>The center point of the professional managing</h5>
@@ -46,6 +48,22 @@ $auth->isLogin();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Hỏi đáp</a>
                 </li>
+                <!--<<<<<<< HEAD-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+                <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                        Tài khoản-->
+                <!--                    </a>-->
+                <!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>-->
+                <!--                        <div class="dropdown-divider"></div>-->
+                <!--                        <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--=======-->
                 <!--                <li class="nav-item dropdown">-->
                 <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
                 <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -83,26 +101,25 @@ $auth->isLogin();
                 <div class="row">
                     <div class=" col-12" style="margin-left: 150px">
                         <li class="nav-item">
-                            <img id="user" src="Public/Image/Screenshot%20from%202021-05-18%2020-26-40.png" style="float: left ; margin-right: 20px">
+                            <img id="user" src="Public/Image/user/unnamed1.jpeg"
+                                 style="float: left ; margin-right: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tài khoản
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân </a>
-                                <a class="dropdown-item" href="#">Quên mật khẩu</a>
-                                <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                                <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành
                                     viên</a>
-                                <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
+                                <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
                             </div>
                         </li>
-
                     </div>
                 </div>
+            </ul>
         </div>
     </nav>
 </div>
@@ -116,7 +133,7 @@ $auth->isLogin();
         <aside class="col-12 col-sm-3">
             <div class="card poly-cart">
                 <div class="card-body row">
-                    <p class="col-sm-9"><?php include "View/core/count.php" ?></p>
+<!--                    <p class="col-sm-9">--><?php //include "View/core/count.php" ?><!--</p>-->
                 </div>
                 <div class="card mt-3 mb-3">
                     <div class="card-body">
