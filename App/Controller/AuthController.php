@@ -51,7 +51,7 @@ class AuthController
 
             $user = new User($data);
             if (empty($_REQUEST['image'])) {
-                $user->setImage("");
+                $user->setImage("Public/Image/user/unnamed1.jpeg");
             }
             if (empty($_REQUEST['date_of_birth'])) {
                 $user->setDateOfBirth("1990-01-01");
@@ -106,21 +106,29 @@ class AuthController
             $phone = $_REQUEST['phone'];
             $image = $taget_file;
 
-            if ($image === "Public/Images/user/") {
-                $data = ['name' => $name, 'email' => $email,
-                    'password' => $password, 'date_of_birth' => $date_of_birth,'phone'=>$phone];
-            } else {
-                $data = ['name' => $name, 'email' => $email,
-                    'password' => $password, 'date_of_birth' => $date_of_birth,
-                    'phone'=>$phone, 'image' => $image];
-            }
+
+            $data = ['name' => $name, 'email' => $email,
+                'password' => $password, 'phone' => $phone];
+
+
             $user = new User($data);
+
+
+            if (empty($basename)) {
+                $user->setImage($_REQUEST['image-name']);
+            } else {
+                $user->setImage($image);
+            }
+
             $user->setId($_SESSION['id']);
+            $user->setDateOfBirth($date_of_birth);
+
             $userModel = new UserModel();
             $userModel->edit($user);
             header("Location: index.php");
         }
     }
+
     public function getByidforEdit()
     {
         $id = $_SESSION['id'];
@@ -128,6 +136,7 @@ class AuthController
         $result = $result[0];
         require_once 'View/user/edit.php';
     }
+
     public function showlist()
     {
         $id = $_SESSION['id'];
@@ -135,5 +144,13 @@ class AuthController
         $data = $result;
 
         include_once "View/user/list.php";
+    }
+
+    public function getByid()
+    {
+        $id = $_SESSION['id'];
+        $result = $this->userModel->getByinIndex($id);
+        $result = $result[0];
+        return $result;
     }
 }
