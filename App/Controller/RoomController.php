@@ -203,7 +203,8 @@ class RoomController
     public function checkOut()
     {
         $id = $_GET["id"];
-        $this->roomDB->checkOut($id);
+        $room = $this->roomDB->getById($id);
+        $this->roomDB->checkOut($id , $room);
         header("location:index.php?page=room&action=show-list");
     }
 

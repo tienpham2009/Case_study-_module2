@@ -144,7 +144,7 @@ class RoomModel extends Models implements Model_Interface
         $stmtRoom->execute();
     }
 
-    public function checkOut($id)
+    public function checkOut($id , $room)
     {
         $sql = "UPDATE room SET status = :status WHERE Id = :room_id";
 
