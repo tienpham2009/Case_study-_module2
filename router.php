@@ -40,6 +40,7 @@ switch ($page) {
                 break;
             case "search":
                 $roomController->search();
+                break;
         }
         break;
     case 'user':

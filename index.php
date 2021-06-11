@@ -9,7 +9,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>H.T.T Motel Manager</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Public/Css/view.css">
+    <link rel="shortcut icon" href="Public/Image/icon2.png">
 </head>
 <body>
 <?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto" id="header">
     <header class="row" >
         <div class="col-12 col-md-12 shopping-mall">
-            <h1>Online H.T.T Motel Manager</h1>
+            <h1>H.T.T Motel Manager</h1>
             <h5>The center point of the professional managing</h5>
         </div>
     </header>
