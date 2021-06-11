@@ -3,6 +3,7 @@ namespace App;
 
 class User
 {
+    public mixed $id;
     public mixed $name;
     public mixed $email;
     public mixed $phone;
@@ -31,6 +32,14 @@ class User
     public function setDateOfBirth(mixed $date_of_birth): void
     {
         $this->date_of_birth = $date_of_birth;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId(mixed $id): void
+    {
+        $this->id = $id;
     }
 
 }

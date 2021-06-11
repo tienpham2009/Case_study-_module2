@@ -41,6 +41,27 @@
     -webkit-border-radius:50%;
 }
 
+.blue2 {
+    position: relative;
+    background-color: #8EC4D0;
+    margin-bottom: 15px;
+    width: auto;
+    height: auto;
+    color: #FFF;
+    z-index: 3;
+
+}
+.red2 {
+    background-color: #FF4D4D;
+    position: relative;
+    width: auto;
+    height: auto;
+    color: #FFF;
+    margin-top: -50px;
+    margin-left: 50px;
+    z-index: 0;
+
+}
 /*#header{*/
 /*    position: fixed;*/
 /*    top: 0;*/

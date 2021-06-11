@@ -18,8 +18,11 @@ class AuthController
     public function checkEmailPassword()
     {
         $result = $this->userModel->getById($_REQUEST);
+        var_dump($result);
+
+
         if ($result !== false) {
-            $_SESSION['userLogin'] = $result['email'];
+            $_SESSION['id'] = $result['Id'];
             header("Location: ../../index.php");
         }
         return false;
@@ -27,7 +30,7 @@ class AuthController
 
     public function logout()
     {
-        unset($_SESSION['userLogin']);
+        unset($_SESSION['id']);
         session_destroy();
         header("Location: index.php");
     }
@@ -67,7 +70,7 @@ class AuthController
                 header("Location: index.php?page=user&action=register-view");
             } else {
                 $this->userModel->addUser($user);
-                header("Location: ../../View/user/login.php");
+                header("Location: View/user/login.php");
             }
         } else {
             echo "1234";
@@ -82,5 +85,55 @@ class AuthController
     public function validateUser($name)
     {
         return $this->userModel->checkValidateUser($name);
+    }
+
+    public function edit()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === "GET") {
+            $this->getByidforEdit();
+        } else {
+            $basename = $_FILES['image']['name'];
+
+            $target_dir = "Public/Image/user/";
+            $taget_file = $target_dir . basename($basename);
+            move_uploaded_file($_FILES['image']['tmp_name'], $taget_file);
+
+            $name = $_REQUEST['name'];
+            $password = $_REQUEST['password'];
+            $email = $_REQUEST['email'];
+            $date_of_birth = $_REQUEST['date_of_birth'];
+            $phone = $_REQUEST['phone'];
+            $image = $taget_file;
+
+            if ($image === "Public/Images/user/") {
+                $data = ['name' => $name, 'email' => $email,
+                    'password' => $password, 'date_of_birth' => $date_of_birth,'phone'=>$phone];
+            } else {
+                $data = ['name' => $name, 'email' => $email,
+                    'password' => $password, 'date_of_birth' => $date_of_birth,
+                    'phone'=>$phone, 'image' => $image];
+            }
+            $user = new User($data);
+            $user->setId($_SESSION['id']);
+            $userModel = new UserModel();
+            $userModel->edit($user);
+            header("Location: index.php");
+        }
+    }
+    public function getByidforEdit()
+    {
+        $id = $_SESSION['id'];
+        $result = $this->userModel->getByidforEdit($id);
+        $result = $result[0];
+        require_once 'View/user/edit.php';
+    }
+    public function showlist()
+    {
+        $id = $_SESSION['id'];
+        $result = $this->userModel->getByidforEdit($id);
+        $data = $result;
+
+        include_once "View/user/list.php";
     }
 }
