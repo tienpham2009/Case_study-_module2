@@ -45,6 +45,13 @@ switch ($page) {
                 break;
             case 'register-view':
                 header("location: View/user/register");
+                break;
+            case 'edit':
+                $authController->edit();
+                break;
+            case 'list':
+                $authController->showlist();
+                break;
         }
         break;
 

@@ -21,7 +21,7 @@ $auth->isLogin();
     <link rel="stylesheet" href="Public/Css/view.css">
 </head>
 <body>
-<?php include "View/core/view.php" ?>
+<?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto">
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
@@ -52,12 +52,10 @@ $auth->isLogin();
                         Tài khoản
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="#">Quên mật khẩu</a>
-                        <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành viên</a>
-                        <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
+                        <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
                     </div>

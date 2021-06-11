@@ -2,13 +2,15 @@
 require_once "../../vendor/autoload.php";
 use App\Controller\AuthController;
 $authController = new AuthController();
-if (isset($_SESSION['error'])){
-    var_dump($_SESSION['error']);
-    die();
-}
-if ($_SERVER['REQUEST_METHOD']==="POST") {
-    $authController->register();
-}
+session_start();
+//if (isset($_SESSION['error'])){
+//    var_dump($_SESSION['error']);
+//    die();
+//}
+//if ($_SERVER['REQUEST_METHOD']==="POST") {
+//    $authController->register();
+//}
+
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -30,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD']==="POST") {
             <article class="card-body mx-auto" style="max-width: 400px;">
                 <h4 class="card-title mt-3 text-center">Create Account</h4>
                 <p class="text-center">Get started with your free account</p>
-
-                <?php if (isset($_SESSION['error'])):?>
+                <?php if (!empty($_SESSION['error'])):?>
                     <div class="alert alert-danger">
-                        <?php ?>
+                        <?php echo implode("<br>",$_SESSION['error'])?>
                     </div>
                 <?php endif; ?>
+
                 <form method="post" action="../../index.php?page=user&action=register">
 
                     <div class="form-group input-group">

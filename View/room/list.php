@@ -50,4 +50,8 @@ as $key => $room): ?>
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+    </div>
+</div>
+
+    <?php endforeach; ?>
+
