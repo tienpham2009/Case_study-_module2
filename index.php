@@ -23,46 +23,49 @@
 <body>
 <?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto">
-    <header class="row">
-        <div class="col-12 col-md-12 shopping-mall">
-            <h1>H.T.T Motel Manager</h1>
-            <h5>The center point of the professional managing</h5>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
-        <a class="navbar-brand" href="index.php">Trang chủ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Giới thiệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Liên hệ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hỏi đáp</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Quản lí phòng
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
-                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
-                        <a class="dropdown-item" href="#">Thông kê</a>
-                    </div>
-                </li>
-            <form class="form-inline my-2 my-lg-0" method="post" action="index.php?page=room&action=search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search" name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-            </form>
-        </div>
-    </nav>
+    <div style="position: fixed">
+        <header class="row">
+            <div class="col-12 col-md-12 shopping-mall">
+                <h1>H.T.T Motel Manager</h1>
+                <h5>The center point of the professional managing</h5>
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark mt-2">
+            <a class="navbar-brand" href="index.php">Trang chủ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hỏi đáp</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Quản lí phòng
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
+                            <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
+                            <a class="dropdown-item" href="#">Thông kê</a>
+                        </div>
+                    </li>
+                    <form class="form-inline my-2 my-lg-0" method="post" action="index.php?page=room&action=search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Từ khoá" aria-label="Search"
+                               name="search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                    </form>
+            </div>
+        </nav>
+    </div>
     <div class="row">
         <article class="col-12 col-sm-9 mt-2">
             <div class="col-12 col-sm-12 row mb-2">
@@ -72,23 +75,25 @@
         <aside class="col-12 col-sm-3">
             <div class="card poly-cart">
                 <div class="card-body row">
-<!--                    <p class="col-sm-9">--><?php //include "View/core/count.php"?><!--</p>-->
-            </div>
-            <div class="card mt-3 mb-3">
-                <div class="card-body">
-                    <form>
-                        <input placeholder="Từ khoá" class="form-control"/>
-                    </form>
+                    <!--                    <p class="col-sm-9">--><?php //include "View/core/count.php"?><!--</p>-->
                 </div>
-            </div>
-            <div class="list-group">
-                <a href="" type="button" class="list-group-item list-group-item-action active">
-                    Hiển thị phòng theo trạng thái
-                </a>
-                <a href="index.php?page=room&action=status&status=Empty" type="button" class="list-group-item list-group-item-action">Phòng trống</a>
-                <a href="index.php?page=room&action=status&status=Rented" type="button" class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
-                <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
-            </div>
+                <div class="card mt-3 mb-3">
+                    <div class="card-body">
+                        <form>
+                            <input placeholder="Từ khoá" class="form-control"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <a href="" type="button" class="list-group-item list-group-item-action active">
+                        Hiển thị phòng theo trạng thái
+                    </a>
+                    <a href="index.php?page=room&action=status&status=Empty" type="button"
+                       class="list-group-item list-group-item-action">Phòng trống</a>
+                    <a href="index.php?page=room&action=status&status=Rented" type="button"
+                       class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
+                    <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
+                </div>
         </aside>
     </div>
 </div>
