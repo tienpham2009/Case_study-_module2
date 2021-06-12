@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Date Of Birth</label>
-        <input name="date_of_birth" value="<?php echo $result['date_of_birth'] ?>" type="text" class="form-control"
+        <input name="date_of_birth" value="<?php echo $result['date_of_birth'] ?>" type="date" class="form-control"
                id="exampleInputEmail1" placeholder="Enter producer">
     </div>
     <div class="form-group">

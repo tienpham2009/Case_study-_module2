@@ -64,8 +64,8 @@ switch ($page) {
                 break;
         }
         break;
-//    default:
-//        include "View/core/home.php";
-//        break;
+    default:
+        $roomController->home();
+        break;
 }
-?>
+
