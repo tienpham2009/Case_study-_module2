@@ -1,3 +1,9 @@
+<style>
+    label{
+        color: yellow;
+        font-weight: bold;
+    }
+</style>
 <form method="post">
     <div class="form-row">
         <input type="hidden" name="id" value="<?php echo $room->id ?>">

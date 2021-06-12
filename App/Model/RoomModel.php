@@ -117,7 +117,7 @@ class RoomModel extends Models implements Model_Interface
 
     function delete($id)
     {
-        $sql = 'delete from room where Id= ?';
+        $sql = 'delete from room where Id = ?';
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -194,10 +194,13 @@ class RoomModel extends Models implements Model_Interface
         return $rooms;
     }
 
-    public function statistical()
+    public function statistical($year)
     {
-        $sql = "SELECT MONTH(check_out) AS month , SUM(price) AS price FROM `payment` GROUP BY month";
+        $sql = "SELECT MONTH(check_out) AS month , SUM(price) AS price , YEAR(check_out) AS year FROM `payment` 
+                GROUP BY month , year
+                HAVING year = :year;";
         $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":year" , $year);
         $stmt->execute();
         $result = $stmt->fetchAll();
 

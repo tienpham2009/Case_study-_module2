@@ -1,3 +1,9 @@
+<style>
+    label{
+        color: yellow;
+        font-weight: bold;
+    }
+</style>
 <form method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label class="form-label" for="exampleFormControlInput1">Tên phòng</label>

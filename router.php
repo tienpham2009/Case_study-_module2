@@ -43,6 +43,9 @@ switch ($page) {
             case "statistical":
                 $roomController->statistical();
                 break;
+            case "detail":
+                $roomController->detail();
+                break;
         }
         break;
     case 'user':
@@ -54,7 +57,7 @@ switch ($page) {
                 $authController->register();
                 break;
             case 'register-view':
-                header("location: View/user/register");
+                header("location: View/user/register.php");
                 break;
             case 'edit':
                 $authController->edit();

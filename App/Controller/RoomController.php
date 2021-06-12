@@ -174,7 +174,7 @@ class RoomController
         $room = $this->roomDB->getById($id);
         unlink("Public/Image/" . $room[0]->image);
         $this->roomDB->delete($id);
-        header('Location:index.php?page=room&action=show-list');
+        header('location:index.php?page=room&action=show-list');
     }
 
     function update()
@@ -225,12 +225,32 @@ class RoomController
 
     public function statistical()
     {
-        $payments = $this->roomDB->statistical();
-        include "View/room/statistical.php";
+        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+            include "View/room/statistical.php";
+        }else{
+            if ($_POST["year"] == ""){
+                $error = "nhập năm cần xem thống kê";
+            }
+
+            if (!isset($error)){
+                $year = $_POST["year"];
+                $payments = $this->roomDB->statistical($year);
+            }
+            include "View/room/statistical.php";
+
+        }
     }
 
     public function home()
     {
         include "View/core/home.php";
+    }
+
+    public function detail()
+    {
+        $id = $_GET["id"];
+        $room = $this->roomDB->getById($id);
+        $cates = $this->cateModel->getAll();
+        include "View/room/detail.php";
     }
 }
