@@ -26,7 +26,6 @@ $data = $authController->getByid();
     <link rel="shortcut icon" href="Public/Image/icon2.png">
 </head>
 <body>
-<?php //include "View/core/view.php" ?>
 <div class="container" style="height: auto" id="header">
     <header class="row" style="position: ">
         <div class="col-12 col-md-12 shopping-mall">
@@ -34,89 +33,16 @@ $data = $authController->getByid();
             <h5>The center point of professional managing</h5>
         </div>
     </header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">Trang chủ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"><span class="sr-only">(current)Giới thiệu</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Liên hệ</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Quản lí phòng
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?page=room&action=show-list">Danh Sách</a>
-                        <a class="dropdown-item" href="index.php?page=room&action=add">Thêm Mới</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="index.php?page=room&action=statistical">Thông kê</a>
-                    </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action="index.php?page=room&action=search" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Tên phòng" aria-label="Search"
-                       name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-            </form>
-        </div>
+    <?php include "View/core/navbar.php" ?>
+    <div class="container" style="height: auto">
         <div class="row">
-            <div class=" col-12" style="margin-left: 150px">
-                <img id="user" src="<?php echo $data['image'] ?>"
-                     style="float: left ; margin-right: 20px">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php echo $data['user_name'] ?>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.php?page=user&action=list">Thông tin cá nhân </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.php?page=user&action=register-view">Đăng ký thành
-                        viên</a>
-                    <a class="dropdown-item" href="index.php?page=user&action=edit">Cập nhật hồ sơ</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.php?page=user&action=logout">Đăng xuất</a>
+            <article class="col-12 col-sm-9 mt-2">
+                <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: auto ">
+                    <?php include "router.php" ?>
                 </div>
-            </div>
+                <!--            slide-->
+            </article>
         </div>
-    </nav>
-</div>
-<div class="container" style="height: auto">
-    <div class="row">
-        <article class="col-12 col-sm-9 mt-2">
-            <!--            slide-->
-            <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: scroll">
-                <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-interval="5000">
-                            <img src="Public/Image/Single.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-interval="5000">
-                            <img src="Public/Image/Double.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-interval="5000">
-                            <img src="Public/Image/Vip.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-                <?php include "router.php" ?>
-        </article>
         <aside class="col-12 col-sm-3">
             <div class="card poly-cart">
                 <div class="card-body row">
@@ -130,29 +56,30 @@ $data = $authController->getByid();
                     </div>
                 </div>
             </div>
-    <div class="list-group">
-        <a href="" type="button" class="list-group-item list-group-item-action active">
-            Hiển thị phòng theo trạng thái
-        </a>
-        <a href="index.php?page=room&action=status&status=Empty" type="button"
-           class="list-group-item list-group-item-action">Phòng trống</a>
-        <a href="index.php?page=room&action=status&status=Rented" type="button"
-           class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
-        <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
+            <div class="list-group">
+                <a href="" type="button" class="list-group-item list-group-item-action active">
+                    Hiển thị phòng theo trạng thái
+                </a>
+                <a href="index.php?page=room&action=status&status=Empty" type="button"
+                   class="list-group-item list-group-item-action">Phòng trống</a>
+                <a href="index.php?page=room&action=status&status=Rented" type="button"
+                   class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
+                <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
+            </div>
+        </aside>
     </div>
-</div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script src="Public/Js/roomJs.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="Public/Js/roomJs.js"></script>
 
 </body>
 </html>

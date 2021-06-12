@@ -228,4 +228,9 @@ class RoomController
         $payments = $this->roomDB->statistical();
         include "View/room/statistical.php";
     }
+
+    public function home()
+    {
+        include "View/core/home.php";
+    }
 }

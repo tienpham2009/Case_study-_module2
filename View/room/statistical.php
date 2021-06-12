@@ -1,5 +1,8 @@
-<a type="button" class="btn btn-secondary" href="index.php?page=room&action=show-list">Back</a>
-<div class="card" style="width: 100%">
+
+<div class="card row" style="width: 100%">
+    <div class="col-1">
+        <a type="button" class="btn btn-secondary" href="index.php?page=room&action=show-list" >Back</a>
+    </div>
     <div class="card-header" >
         Thống kê
     </div>
