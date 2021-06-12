@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <div class="container">
+    <div class="form-group input-group">
     <div class="row">
         <aside class="col-sm-9">
             <div class="card">
