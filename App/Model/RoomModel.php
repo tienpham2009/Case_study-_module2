@@ -4,8 +4,8 @@
 namespace App\Model;
 
 
+use App\Payment;
 use App\Room;
-use http\Exception\BadMethodCallException;
 use PDO;
 
 class RoomModel extends Models implements Model_Interface
@@ -125,16 +125,19 @@ class RoomModel extends Models implements Model_Interface
 
     public function checkIn($dataCheckIn)
     {
-//        $sqlPay = "INSERT INTO payment (room_name,	price ) VALUES (:room_name , :price) WHERE room_id = :room_id";
-//
-//        $stmtPay = $this->connect->prepare($sqlPay);
-//        $stmtPay->bindParam(":room_name" , $dataCheckIn["roomName"]);
-//        $stmtPay->bindParam(":price" , $dataCheckIn["price"]);
-//        $stmtPay->bindParam(":room_id", $dataCheckIn["roomId"]);
-//        $stmtPay->execute();
+        $sqlPay = "INSERT INTO `payment`(`room_name`, `price`, `room_id`, `check_in`, `check_out`) VALUES ( :room_name,:price,:room_id,:check_in,:check_out)";
+
+        $stmtPay = $this->connect->prepare($sqlPay);
+        $stmtPay->bindParam(":room_name", $dataCheckIn["roomName"]);
+        $stmtPay->bindParam(":price", $dataCheckIn["price"]);
+        $stmtPay->bindParam(":room_id", $dataCheckIn["roomId"]);
+        $stmtPay->bindParam(":check_in", $dataCheckIn["checkIn"]);
+        $stmtPay->bindParam(":check_out", $dataCheckIn["checkOut"]);
+
+        $stmtPay->execute();
+
 
         $sqlRoom = "UPDATE room SET check_in = :check_in , check_out = :check_out , status = :status WHERE Id = :room_id";
-
         $stmtRoom = $this->connect->prepare($sqlRoom);
         $status = "Rented";
         $stmtRoom->bindParam("check_in" , $dataCheckIn["checkIn"]);
@@ -153,6 +156,8 @@ class RoomModel extends Models implements Model_Interface
         $stmt->bindParam(":status" , $status);
         $stmt->bindParam("room_id" , $id);
         $stmt->execute();
+
+        $sqlPay = "";
     }
 
     public function countByStatus($status)
@@ -187,5 +192,23 @@ class RoomModel extends Models implements Model_Interface
             $rooms[] = $room;
         }
         return $rooms;
+    }
+
+    public function statistical()
+    {
+        $sql = "SELECT MONTH(check_out) AS month , SUM(price) AS price FROM `payment` GROUP BY month";
+        $stmt = $this->connect->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        $payments = [];
+
+        foreach ($result as $item){
+            $payment = new Payment($item);
+            $payments[] = $payment;
+        }
+
+       return $payments;
+
     }
 }
