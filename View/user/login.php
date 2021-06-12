@@ -17,9 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-
+<link rel="stylesheet" href="../../Public/Css/view.css">
+<link rel="shortcut icon" href="../../Public/Image/icon2.png">
 <div class="container">
-    <div class="form-group input-group">
+    <div style="margin-left: 200px; margin-top: 200px" class="background">
     <div class="row">
         <aside class="col-sm-9">
             <div class="card">

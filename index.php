@@ -22,50 +22,28 @@ $data = $authController->getByid();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="Public/Css/view.css">
     <link rel="shortcut icon" href="Public/Image/icon2.png">
+    <link rel="stylesheet" href="Public/Css/view.css">
 </head>
-<body>
+<body class="background">
 <div class="container" style="height: auto" id="header">
     <header class="row" style="position: ">
         <div class="col-12 col-md-12 shopping-mall">
             <h1>H.T.T Motel Manager</h1>
-            <h5>The center point of professional managing</h5>
+            <h5 style="color: black">The center point of the professional managing</h5>
         </div>
     </header>
     <?php include "View/core/navbar.php" ?>
-    <div class="container" style="height: auto">
-        <div class="row">
-            <article class="col-12 col-sm-9 mt-2">
-                <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: auto ">
-                    <?php include "router.php" ?>
-                </div>
-                <!--            slide-->
-            </article>
-        </div>
+</div>
+<div class="container" style="height: auto">
+    <div class="row">
+        <article class="col-12 col-sm-9 mt-2" >
+            <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: auto ">
+                <?php include "router.php" ?>
+            </div>
+        </article>
         <aside class="col-12 col-sm-3">
-            <div class="card poly-cart">
-                <div class="card-body row">
-                    <p class="col-sm-9"><?php include "View/core/count.php" ?></p>
-                </div>
-                <div class="card mt-3 mb-3">
-                    <div class="card-body">
-                        <form>
-                            <input placeholder="Từ khoá" class="form-control"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="list-group">
-                <a href="" type="button" class="list-group-item list-group-item-action active">
-                    Hiển thị phòng theo trạng thái
-                </a>
-                <a href="index.php?page=room&action=status&status=Empty" type="button"
-                   class="list-group-item list-group-item-action">Phòng trống</a>
-                <a href="index.php?page=room&action=status&status=Rented" type="button"
-                   class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
-                <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
-            </div>
+            <?php include "View/core/sidebar.php" ?>
         </aside>
     </div>
     <!-- Optional JavaScript -->

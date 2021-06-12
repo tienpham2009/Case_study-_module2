@@ -65,7 +65,7 @@
 /*    top: 0;*/
 /*}*/
 
-body{
+.background {
     background-image: url("../Image/background.jpg");
     background-repeat: no-repeat;
     background-position: center;
