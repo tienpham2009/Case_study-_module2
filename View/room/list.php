@@ -41,10 +41,13 @@
                                type="button" class="btn btn-danger"
                                onclick="return confirm('Bạn chắc chắn muốn xóa ?')">Delete
                             </a>
+                            <a href="index.php?page=room&action=detail&id=<?php echo $room->id ?>"
+                               type="button" class="btn btn-success">Detail
+                            </a>
                         <?php endif; ?>
                         <?php if ($room->status === "Empty"): ?>
                             <a href="index.php?page=room&action=check_in&id=<?php echo $room->id ?>"
-                               type="submit" class="btn btn-info"><?php echo "Check in" ?>
+                               type="submit" class="btn btn-info">Check in
                             </a>
                         <?php endif; ?>
                         <?php if ($room->status === "Rented"): ?>
