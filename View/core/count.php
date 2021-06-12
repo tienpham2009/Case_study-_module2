@@ -10,3 +10,4 @@ if ($count["status"] == "Empty"){
     echo "Phòng đã cho thuê: ".$count["count"];
 }
 
+

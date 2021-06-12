@@ -28,7 +28,7 @@ $data = $authController->getByid();
     <header class="row">
         <div class="col-12 col-md-12 shopping-mall">
             <h1>H.T.T Motel Manager</h1>
-            <h5>The center point of the professional managing</h5>
+            <h5 style="color: white">The center point of the professional managing</h5>
         </div>
     </header>
     <?php include "View/core/navbar.php" ?>
@@ -39,30 +39,9 @@ $data = $authController->getByid();
             <div class="col-12 col-sm-12 row mb-2" style="height: 700px; overflow: auto ">
                 <?php include "router.php" ?>
             </div>
-
         </article>
         <aside class="col-12 col-sm-3">
-            <div class="card poly-cart">
-                <div class="card-body row">
-                    <p class="col-sm-9"><?php include "View/core/count.php" ?></p>
-                </div>
-                <div class="card mt-3 mb-3">
-                    <div class="card-body">
-                        <form>
-                            <input placeholder="Từ khoá" class="form-control"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="list-group">
-                    <a href="" type="button" class="list-group-item list-group-item-action active">
-                        Hiển thị phòng theo trạng thái
-                    </a>
-                    <a href="index.php?page=room&action=status&status=Empty" type="button"
-                       class="list-group-item list-group-item-action">Phòng trống</a>
-                    <a href="index.php?page=room&action=status&status=Rented" type="button"
-                       class="list-group-item list-group-item-action">Phòng đã cho thuê</a>
-                    <a href="index.php?page=room&action=show-list" type="button" class="btn btn-secondary">Back</a>
-                </div>
+            <?php include "View/core/sidebar.php" ?>
         </aside>
     </div>
 </div>
