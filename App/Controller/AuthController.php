@@ -37,43 +37,63 @@ class AuthController
 
     public function register()
     {
+        /// unset cac session error cu
+        if (isset($_SESSION['errorsFill'])) {
+            unset($_SESSION['errorsFill']);
+        }
+        if (isset($_SESSION['id'])) {
+            unset($_SESSION['id']);
+        }
+        if (isset($_SESSION['errorsFill']['password'])) {
+            unset($_SESSION['errorsFill']['password']);
+            session_destroy();
+        }
+        /// xu ly Request Post
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (isset($_SESSION['error'])) {
                 unset($_SESSION['error']);
             }
-            $error = [];
-            $data = [
-                'name' => $_REQUEST['name'],
-                'email' => $_REQUEST['email'],
-                'phone' => $_REQUEST['phone'],
-                'password' => $_REQUEST['password']
-            ];
+            $errorsFill = [];
 
-            $user = new User($data);
-            if (empty($_REQUEST['image'])) {
-                $user->setImage("Public/Image/user/unnamed1.jpeg");
-            }
-            if (empty($_REQUEST['date_of_birth'])) {
-                $user->setDateOfBirth("1990-01-01");
-            }
-            if ($this->validateUser($user->name) != false) {
-                $error['name'] = "Name đã tồn tại";
-            }
+            //Kiem tra input rong va validate du lieu
+            $errorsFill = $this->checkFillvalidateInput();
 
-            if ($this->validateEmail($user->email) != false) {
-                $error['email'] = "Email đã tồn tại";
-            }
 
-            if (!empty($error)) {
-                session_start();
-                $_SESSION['error'] = $error;
-                header("Location: index.php?page=user&action=register-view");
+            if (empty($errorsFill)) {
+                $data = [
+                    'name' => $_REQUEST['name'],
+                    'email' => $_REQUEST['email'],
+                    'phone' => $_REQUEST['phone'],
+                    'password' => $_REQUEST['password']
+                ];
+                $user = new User($data);
+                if (empty($_REQUEST['image'])) {
+                    $user->setImage("Public/Image/user/unnamed1.jpeg");
+                }
+                if (empty($_REQUEST['date_of_birth'])) {
+                    $user->setDateOfBirth("1990-01-01");
+                }
+                if ($this->validateUser($user->name) != false) {
+                    $error['name'] = "Name đã tồn tại";
+                }
+                if ($this->validateEmail($user->email) != false) {
+                    $error['email'] = "Email đã tồn tại";
+                }
+                if (!empty($error)) {
+                    session_start();
+                    $_SESSION['error'] = $error;
+                    header("Location: View/user/register.php");
+                } else {
+
+                    $this->userModel->addUser($user);
+                    header("Location: View/user/login.php");
+                }
             } else {
-                $this->userModel->addUser($user);
-                header("Location: View/user/login.php");
+                $_SESSION['errorsFill'] = $errorsFill;
+                header("Location: View/user/register.php");
             }
         } else {
-            echo "1234";
+            header("Location: View/user/register.php");
         }
     }
 
@@ -153,4 +173,30 @@ class AuthController
         $result = $result[0];
         return $result;
     }
+
+    public function checkFillvalidateInput()
+    {
+        $pattern = "/^(84|0[3|5|7|8|9])+([0-9]{8})\b/";
+        $fields = ['name', 'email', 'phone', 'password'];
+        $errorsFill = [];
+        foreach ($fields as $key => $field) {
+            if (empty($_POST[$field])) {
+                $errorsFill[$field] = "Không được để trống";
+            }
+        }
+        if (strlen($_POST['password']) < 6) {
+            $errorsFill['password'] = $errorsFill['password']."PW không đủ 6 ký tự"."<br>";
+        }
+        if (strlen($_POST['name']) < 6 ){
+            $errorsFill['name'] = $errorsFill['name']."Name không đủ 6 ký tự"."<br>";
+        }
+        if (!preg_match($pattern,$_POST['phone'])){
+            $errorsFill['phone'] = $errorsFill['phone']."SĐT không tồn tại";
+        }
+
+
+        return $errorsFill;
+    }
+
+
 }

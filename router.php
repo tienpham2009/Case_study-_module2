@@ -68,6 +68,7 @@ switch ($page) {
         }
         break;
     default:
+
         $roomController->home();
         break;
 }

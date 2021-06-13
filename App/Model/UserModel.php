@@ -30,12 +30,13 @@ class UserModel extends Models
         $sql = "INSERT INTO `user`(`user_name`,`password`,`email`,`image`,`date_of_birth`,`phone_number`) 
 VALUES(:user_name,:password,:email,:image,:date_of_birth,:phone_number) ";
         $stmt = $this->connect->prepare($sql);
+        $phone = (int)$user->phone;
         $stmt->bindParam(':user_name', $user->name);
         $stmt->bindParam(':password', $user->password);
         $stmt->bindParam(':email', $user->email);
         $stmt->bindParam(':image', $user->image);
         $stmt->bindParam(':date_of_birth', $user->date_of_birth);
-        $stmt->bindParam(':phone_number', $user->phone);
+        $stmt->bindParam(':phone_number', $phone);
         $stmt->execute();
     }
 
