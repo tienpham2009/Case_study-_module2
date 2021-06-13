@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
     $authController = new AuthController();
     if (!$authController->checkEmailPassword()) {
-        $error = 'Tai khoan mat khau khong dung';
+        $error = 'Email hoặc Mật khẩu không đúng';
     }
 }
 ?>

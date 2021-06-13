@@ -1,19 +1,11 @@
 <?php
-require_once "../../vendor/autoload.php";
+include_once "../../vendor/autoload.php";
 
 use App\Controller\AuthController;
 
 $authController = new AuthController();
 session_start();
-//if (isset($_SESSION['error'])){
-//    var_dump($_SESSION['error']);
-//    die();
-//}
-//if ($_SERVER['REQUEST_METHOD']==="POST") {
-//    $authController->register();
-//}
-
-?>
+//var_dump($_SESSION['error']);?>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -39,6 +31,7 @@ session_start();
                 </div>
             <?php endif; ?>
 
+
             <form method="post" action="../../index.php?page=user&action=register">
 
                 <div class="form-group input-group">
@@ -47,18 +40,31 @@ session_start();
                     </div>
                     <input name="name" class="form-control" placeholder="Full name" type="text">
                 </div> <!-- form-group// -->
+                <?php if (!empty($_SESSION['errorsFill']['name'])): ?>
+                    <p class="text-danger"><?php echo $_SESSION['errorsFill']['name'];
+                        unset($_SESSION['errorsFill']['name']) ?></p>
+                <?php endif; ?>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
                     <input name="email" class="form-control" placeholder="Email address" type="email">
                 </div> <!-- form-group// -->
+                <?php if (!empty($_SESSION['errorsFill']['email'])): ?>
+                    <p class="text-danger"><?php echo $_SESSION['errorsFill']['email'];
+                        unset($_SESSION['errorsFill']['email']) ?></p>
+                <?php endif; ?>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                     </div>
                     <input name="phone" class="form-control" placeholder="Phone number" type="number">
+
                 </div> <!-- form-group// -->
+                <?php if (!empty($_SESSION['errorsFill']['phone'])): ?>
+                    <p class="text-danger"><?php echo $_SESSION['errorsFill']['phone'];
+                        unset($_SESSION['errorsFill']['phone']) ?></p>
+                <?php endif; ?>
 
                 <!-- form-group end.// -->
                 <div class="form-group input-group">
@@ -68,6 +74,10 @@ session_start();
                     <input name="password" id="password" class="form-control" placeholder="Create password"
                            type="password">
                 </div> <!-- form-group// -->
+                <?php if (!empty($_SESSION['errorsFill']['password'])): ?>
+                    <p class="text-danger"><?php echo $_SESSION['errorsFill']['password'];
+                        unset($_SESSION['errorsFill']['password']) ?></p>
+                <?php endif; ?>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -75,7 +85,8 @@ session_start();
                     <input name="confirm_password" id="confirm_password" class="form-control"
                            placeholder="Repeat password" type="password">
                 </div> <!-- form-group// -->
-                <h4><span style="" id="message"></span></h4>
+                <h6><span style="" id="message"></span></h6>
+                <h6><span style="" id="message1"></span></h6>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
@@ -87,19 +98,20 @@ session_start();
 
 </div>
 <!--container end.//-->
-
 <script type="text/javascript">
     $('#password, #confirm_password').on('keyup', function () {
-        if ($('#password').val() === $('#confirm_password').val()) {
-            $('#message').html('Password khớp').css('color', 'green');
-        } else
-            $('#message').html('Password không khớp').css('color', 'red');
+        if ($('#password').val().length > 0) {
+            if ($('#password').val() === $('#confirm_password').val()) {
+                $('#message').html('Password khớp').css('color', 'green');
+            } else
+                $('#message').html('Password không khớp').css('color', 'red');
+        }
     });
-    $('#phone').on('keyup', function () {
-        if ($('#password').val() === $('#confirm_password').val()) {
-            $('#message').html('Password khớp').css('color', 'green');
+    $('#password').on('keyup', function () {
+        if ($('#password').val().length < 6) {
+            $('#message1').html('Password chưa đủ 6 ký tự').css('color', 'red');
         } else
-            $('#message').html('Password không khớp').css('color', 'red');
+            $('#message1').html('Password đạt').css('color', 'green');
     });
 </script>
 
