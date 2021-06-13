@@ -13,14 +13,13 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Loại Phòng</label>
-            <p><?php  echo $room->cateName ?></p>
+            <input class="form-control" value="<?php  echo $room->cateName ?>">
         </div>
         <div class="form-group col-md-6">
             <label for="inputZip">Giá phòng</label>
             <input id="unitPrice" class="form-control" value=" <?php echo $room->unit_price ?>" >
         </div>
     </div>
-
     <div class="form-group">
         <label for="inputAddress">Hình ảnh</label>
         <img width="200px" height="150px" src="Public/Image/<?php echo $room->image ?>">
