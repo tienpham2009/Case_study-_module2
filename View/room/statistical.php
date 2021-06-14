@@ -1,7 +1,4 @@
 <div class="card row" style="width: 100%">
-    <div class="col-1">
-        <a type="button" class="btn btn-secondary" href="index.php?page=room&action=show-list">Back</a>
-    </div>
     <form method="post">
         <div class="form-group">
             <label for="exampleFormControlInput1">Năm</label>
@@ -11,6 +8,7 @@
             <?php endif; ?>
         </div>
         <button type="submit" class="btn btn-success">Xem Thống Kê</button>
+            <a type="button" class="btn btn-secondary" href="index.php?page=room&action=show-list">Back</a>
     </form>
     <div class="card-header">
         Thống kê
