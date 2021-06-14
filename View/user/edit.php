@@ -1,3 +1,9 @@
+<style>
+    label{
+        color: yellow;
+        font-weight: bold;
+    }
+</style>
 <form method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
